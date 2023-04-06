@@ -1,0 +1,25 @@
+@keyframes scroll {
+	0% {
+		transform: translateY(0);
+	}
+
+	30% {
+		transform: translateY(5px);
+	}
+}
+
+@-webkit-keyframes scroll {
+	0% {
+		transform: translateY(0);
+	}
+
+	30% {
+		transform: translateY(5px);
+	}
+}
+
+
+.arrow {
+	animation: scroll linear 1.5s infinite;
+	-webkit-animation: scroll linear 1.5s infinite;
+}
