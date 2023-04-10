@@ -18,8 +18,15 @@
 	}
 }
 
-
-.arrow {
-	animation: scroll linear 1.5s infinite;
-	-webkit-animation: scroll linear 1.5s infinite;
+.container{
+	position: absolute;
+	bottom:3%;
+	left: 50%;
+	z-index: 99;
+	color: #fff;
+	.arrow {
+		animation: scroll linear 1.5s infinite;
+		-webkit-animation: scroll linear 1.5s infinite;
+	}
 }
+

@@ -8,21 +8,24 @@ import ArrowIcon from "./ArrowIcon.tsx";
 import SocialMediaIcons from "./SocialMediaIcons";
 
 const socialMediaUrls = {
-  twitter: "www.twitter.com/lupecozzolino",
-  instagram: "www.instagram.com/lupecozzolino",
-  youtube: "www.youtube.com/lupecozzolino",
-  tiktok: "www.tiktok.com/lupecozzolino",
+  instagram: "https://www.instagram.com/lupecozzolino",
+  youtube: "https://www.youtube.com/lupecozzolino",
+  tiktok: "https://www.tiktok.com/lupecozzolino",
 };
+
+const initAnimation = () => {
+  setTimeout(() => {
+    AOS.init();
+    AOS.refresh();
+  }, 2500);
+}
 
 const Header = () => {
   useEffect(() => {
-    setTimeout(() => {
-      AOS.init();
-      AOS.refresh();
-    }, 2500);
+    initAnimation();
   }, []);
 
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.smooth}></div>
@@ -64,13 +67,7 @@ const Header = () => {
           alt="header image"
         />
       </div>
-      <div
-        data-aos="zoom-in"
-        data-aos-duration="0"
-        className={styles.arrowIcon}
-      >
-        <ArrowIcon />
-      </div>
+      <ArrowIcon />
     </div>
   );
 };
