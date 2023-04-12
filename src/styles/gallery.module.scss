@@ -1,0 +1,22 @@
+.container {
+  margin: 48px 0;
+  position: relative;
+  width: 100%;
+
+  .swiper__container {
+    position: absolute;
+    width: 100%;
+  }
+}
+
+
+.editorial__container {
+  width: 100%;
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+
+  .album__container {
+    width: 55%;
+  }
+}

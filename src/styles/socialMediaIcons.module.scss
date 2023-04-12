@@ -1,0 +1,50 @@
+$redColor: rgb(208, 82, 82);
+$blueColor:rgb(148, 166, 181);
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 144px;
+}
+
+.icon3d {
+  &:first-child{
+    padding-left: 0;
+  }
+  padding: 12px;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    -webkit-animation: icon3d-active 500ms infinite;
+    animation: icon3d-active 500ms infinite;
+  }
+
+  &.animated {
+    -webkit-animation: icon3d-active 500ms infinite;
+    animation: icon3d-active 500ms infinite;
+  }
+}
+
+
+@keyframes icon3d-active {
+  0% {
+    filter: drop-shadow(5px 4px $redColor) drop-shadow(-5px -6px $blueColor);
+  }
+
+  25% {
+    filter: drop-shadow(-5px -6px $redColor) drop-shadow(5px 4px $blueColor);
+  }
+
+  50% {
+    filter: drop-shadow(5px -4px $redColor) drop-shadow(-8px 4px $blueColor);
+  }
+
+  75% {
+    filter: drop-shadow(-8px -4px $redColor) drop-shadow(-5px -4px $blueColor);
+  }
+
+  100% {
+    filter: drop-shadow(-5px 0 $redColor) drop-shadow(5px -4px $blueColor);
+  }
+}

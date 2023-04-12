@@ -1,4 +1,4 @@
-import styles from "./socialMediaIcons.module.scss";
+import styles from "@/styles/socialMediaIcons.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faYoutube,
@@ -6,7 +6,6 @@ import {
   faTiktok,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { useState, useEffect } from "react";
 
 interface props {
@@ -15,47 +14,56 @@ interface props {
 
 type socialMediaType = {
   [N in "youtube" | "instagram" | "tiktok"]?: string;
-}
+};
 
 interface socialMedia {
-  url: string, isAnimated: boolean, icon: IconDefinition
+  socialMediaKey: string;
+  url: string;
+  isAnimated: boolean;
 }
 
 const SocialMediaIcons = (socialMediaLinks: props) => {
-  console.log(socialMediaLinks)
-  const [activeAnimation, setActiveAnimation] = useState(0);
+  const socialMediaLinksArr = Object.keys(socialMediaLinks);
 
-  setInterval(() => {
-    setActiveAnimation(activeAnimation < Object.keys(socialMediaLinks).length - 1 ? activeAnimation + 1 : 0)
-  }, 3000)
-
-  const SocialMediaIcon = ({ url, icon, isAnimated }: socialMedia) => {
+  const SocialMediaIcon = ({
+    socialMediaKey,
+    url,
+    isAnimated,
+  }: socialMedia) => {
+    const icon =
+      socialMediaKey == "instagram"
+        ? faInstagram
+        : socialMediaKey == "youtube"
+        ? faYoutube
+        : socialMediaKey == "tiktok"
+        ? faTiktok
+        : faInstagram;
     return (
       <FontAwesomeIcon
+        key={socialMediaKey}
         icon={icon}
-        className={`${styles.icon3d} ${isAnimated ? styles.animated : ""}`}
-        onClick={() => window.location = url}
+        className={`${styles.icon3d} ${socialMediaKey}`}
+        onClick={() => ((window as Window).location = url)}
       />
     );
   };
 
   return (
     <div
-      data-aos="zoom-in"
-      data-aos-duration="2000"
+      data-aos="fade-right"
+      data-aos-duration="1800"
       className={styles.container}
     >
-
-      {
-        Object.keys(socialMediaLinks).map((key: string) => {
-          const icon = key == "instagram" ? faInstagram : key == 'youtube' ? faYoutube : faTiktok;
-          const isAnimated = Object.keys(socialMediaLinks)[activeAnimation] == key;
-          return (
-            key && <SocialMediaIcon url={socialMediaLinks[key]} icon={icon} isAnimated={isAnimated} />
-
+      {socialMediaLinksArr.map((socialMediaKey: string) => {
+        return (
+          socialMediaKey && (
+            <SocialMediaIcon
+              socialMediaKey={socialMediaKey}
+              url={socialMediaLinks[socialMediaKey]}
+            />
           )
-        })
-      }
+        );
+      })}
     </div>
   );
 };
