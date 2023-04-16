@@ -4,7 +4,7 @@ import styles from "@/styles/header.module.scss";
 import HeaderImage from "../../public/header.jpg";
 import ArrowIcon from "./ArrowIcon";
 import SocialMediaIcons from "./SocialMediaIcons";
-import PolaroidGallery from "./PolaroidGallery";
+import GalleryPolaroid from "./GalleryPolaroid";
 import React from "react";
 
 const socialMediaUrls = {
@@ -15,38 +15,38 @@ const socialMediaUrls = {
 
 const Header = () => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.page__container}>
       <div className={styles.container}>
         <div className={styles.smooth}></div>
-        <div className={styles.content}>
-          <div>
+        <div className={styles.box}>
+          <div className={styles.content}>
             <p
               data-aos="fade-right"
-              data-aos-duration="1800"
+              data-aos-duration="1500"
               className={styles.text__greeting}
             >
               HI! I'M
             </p>
             <h1
               data-aos="fade-right"
-              data-aos-duration="1800"
+              data-aos-duration="1500"
               className={styles.text__name}
             >
               LUPE COZZOLINO
             </h1>
             <p
               data-aos="fade-right"
-              data-aos-duration="1800"
+              data-aos-duration="1500"
               className={styles.text__job}
             >
               A CONTENT CREATOR
             </p>
-            <p data-aos="fade-right" data-aos-duration="1800">
+            <p data-aos="fade-right" data-aos-duration="1500">
               Campañas - Editorial - Viajes - Ketupe - Colaboraciones con marcas
               - Tiktoks - Entrevistas
             </p>
             <SocialMediaIcons {...socialMediaUrls} />
-            <PolaroidGallery />
+            <GalleryPolaroid albumId="polaroid"/>
           </div>
         </div>
         <div className={styles.container__image}>

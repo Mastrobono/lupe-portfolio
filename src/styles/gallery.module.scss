@@ -1,3 +1,5 @@
+@import "utilities.scss";
+
 .container {
   margin: 48px 0;
   position: relative;
@@ -9,14 +11,75 @@
   }
 }
 
+.page__container {
+  background-color: black;
+  padding: 32px;
+}
 
-.editorial__container {
+
+
+.gallery__container {
   width: 100%;
   margin-left: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  height: 100%;
+  background-color: #edf5f8;
+  position: relative;
+
+  &--column {
+    flex-direction: column;
+  }
+
 
   .album__container {
-    width: 55%;
+    width: 100%;
+    align-self: flex-start;
+
+    padding: 2.5% 10%;
+  }
+
+
+
+  .text__container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    justify-content: center;
+    color: #000;
+
+    font-family: $font-roboto;
+
+    .section__title {
+      color: #000;
+
+      &::after {
+        background-color: #d1334e;
+        content: "";
+        height: 4px;
+        width: 174px;
+        display: block;
+        margin: 16px 0px 16px 0px;
+      }
+
+      font-size: 42px;
+    }
+
+    .text__greeting {
+      color: #000;
+      font-size: 40px;
+      font-family: $font-roboto;
+    }
+
+  }
+
+
+}
+
+.cube__gallery__container{
+
+  display: flex;
+  flex-direction: row;
+  .swiper--cube{
   }
 }

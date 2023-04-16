@@ -14,6 +14,7 @@ const nextConfig = {
     })
     return config;
   },
+  "allowImportingTsExtensions": true
 }
 
 module.exports = nextConfig

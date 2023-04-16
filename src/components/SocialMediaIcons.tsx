@@ -28,7 +28,6 @@ const SocialMediaIcons = (socialMediaLinks: props) => {
   const SocialMediaIcon = ({
     socialMediaKey,
     url,
-    isAnimated,
   }: socialMedia) => {
     const icon =
       socialMediaKey == "instagram"
@@ -51,7 +50,7 @@ const SocialMediaIcons = (socialMediaLinks: props) => {
   return (
     <div
       data-aos="fade-right"
-      data-aos-duration="1800"
+      data-aos-duration="1500"
       className={styles.container}
     >
       {socialMediaLinksArr.map((socialMediaKey: string) => {

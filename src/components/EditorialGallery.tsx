@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import PhotoAlbum from "react-photo-album";
+import React, { useCallback, useRef, useState } from "react";
+import PhotoAlbum, { RenderPhoto } from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import styles from "@/styles/gallery.module.scss";
@@ -24,7 +24,7 @@ import editorial_9 from "../../public/assets/editorial_9.jpg";
 
 const EditorialGallery = () => {
   const [index, setIndex] = useState(-1);
-  const images = [
+  const photos = [
     editorial_6,
     editorial_7,
     editorial_8,
@@ -37,8 +37,29 @@ const EditorialGallery = () => {
     editorial_5,
   ];
 
+  const RenderCustomPhoto: RenderPhoto = useCallback(
+    ({ imageProps: { alt, style, ...restImageProps } }) => {
+      return (
+        <div
+          data-aos={photos.map(attributes => {return attributes.src}).indexOf(restImageProps.src) ? 'fade-down-left' : 'fade-up-right'}
+          data-aos-duration="2000"
+          data-offset="-100px"
+        >
+          <img
+            alt={alt}
+            style={{ ...style, width: "100%", padding: 0 }}
+            {...restImageProps}
+          />
+        </div>
+      );
+    },
+    []
+  );
+
+  
+
   return (
-    <div className={`page__container`}>
+    <div className={styles.page__container}>
       <div className={styles.editorial__container}>
         <Lightbox
           open={index >= 0}
@@ -49,13 +70,27 @@ const EditorialGallery = () => {
           render={{ slide: NextJsImage }}
         />
 
-        <div className={styles.album__container}>
+        <div
+          className={styles.text__container}
+          data-aos="fade-left"
+          data-aos-easing="linear"
+          data-aos-duration="1000"
+        >
+          <h1 className={styles.section__title}>EDITORIAL</h1>
+        </div>
+
+        <div
+          className={styles.album__container}
+          data-aos="fade-down"
+          data-aos-easing="linear"
+          data-aos-duration="1500"
+        >
           <PhotoAlbum
-            photos={images.map((image) => {
+            photos={photos.map((photo) => {
               return {
-                src: image.src,
-                width: image.width,
-                height: image.height,
+                src: photo.src,
+                width: photo.width,
+                height: photo.height,
               };
             })}
             layout="columns"
@@ -63,18 +98,8 @@ const EditorialGallery = () => {
             padding={0}
             columns={4}
             onClick={({ index }) => setIndex(index)}
+            renderPhoto={RenderCustomPhoto}
           />
-        </div>
-        <div style={{ color: "#000" }}>
-          <div>
-            <p className={styles.text__greeting}>HI! I'M</p>
-            <h1 className={styles.text__name}>LUPE COZZOLINO</h1>
-            <p className={styles.text__job}>A CONTENT CREATOR</p>
-            <p data-aos="fade-right" data-aos-duration="1800">
-              Campañas - Editorial - Viajes - Ketupe - Colaboraciones con marcas
-              - Tiktoks - Entrevistas
-            </p>
-          </div>
         </div>
       </div>
     </div>

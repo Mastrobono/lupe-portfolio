@@ -1,21 +1,15 @@
 import Header from "@/components/Header";
-import Gallery from "@/components/PolaroidGallery";
 import Head from "next/head";
 import styles from "@/styles/index.module.scss";
-import PolaroidGallery from "@/components/PolaroidGallery";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
-
-import UseAnimations from "react-useanimations";
-import github from "react-useanimations/lib/github";
-import maximizeMinimize from "react-useanimations/lib/maximizeMinimize";
-import EditorialGallery from "@/components/EditorialGallery";
+import Gallery from "@/components/Gallery";
+import GalleryTravel from "@/components/GalleryTravel";
 
 export default function Home() {
   useEffect(() => {
-    AOS.init();
-    AOS.refresh();
+    setTimeout(() => AOS.init(), 2800);
   }, []);
 
   return (
@@ -28,7 +22,15 @@ export default function Home() {
       </Head>
       <main>
         <Header></Header>
-        <EditorialGallery/>
+        <Gallery
+          album={{ id: "editorial", layout: "masonry" }}
+          section={{
+            title: "EDITORIAL",
+            position: "left",
+            aosEffect: "fade-left",
+          }}
+        />
+        <GalleryTravel />
       </main>
     </>
   );

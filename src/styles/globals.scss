@@ -7,12 +7,20 @@
   color: #fff;
 }
 
+$black: #000;
+$white: #fff;
+
 //Gallery styles
 
 $blank__creme : #dfd6d6;
 
-.polaroid__swiper{
+.polaroid__swiper {
   width: 100%;
+
+  .swiper-slide {
+    position: absolute;
+    left: -14.5%;
+  }
 
   .swiper-android .swiper-slide,
   .swiper-wrapper .swiper-slide {
@@ -78,7 +86,16 @@ $blank__creme : #dfd6d6;
   }
 }
 
-.page__container{
-  padding:48px;
-  position:relative;
+.swiper--cube {
+  width: 100%;
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+  }
+  
 }

@@ -2,7 +2,7 @@ import styles from "@/styles/arrowIcon.module.scss";
 
 const ArrowIcon = () => {
   return (
-    <div data-aos="zoom-in" data-aos-duration="1800" data-aos-offset={-100} className={styles.container}>
+    <div data-aos="zoom-in" data-aos-duration="1500" data-aos-offset={-100} className={styles.container}>
       <svg width="27px" height="30px" viewBox="0 0 27 25">
         <g>
           <path
