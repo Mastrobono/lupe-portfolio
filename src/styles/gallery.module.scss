@@ -11,31 +11,43 @@
   }
 }
 
-.page__container {
-  background-color: black;
-  padding: 32px;
-}
-
-
-
 .gallery__container {
   width: 100%;
   margin-left: auto;
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: #edf5f8;
+  //background-color: #edf5f8;
   position: relative;
 
   &--column {
     flex-direction: column;
   }
 
+  &__cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .img__wrapper {
+      width: 50%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .img {
+        width: 48%;
+      }
+    }
+  }
 
   .album__container {
     width: 100%;
     align-self: flex-start;
-
     padding: 2.5% 10%;
   }
 
@@ -50,19 +62,21 @@
 
     font-family: $font-roboto;
 
-    .section__title {
-      color: #000;
+    .section {
+      &__title {
+        color: #000;
 
-      &::after {
-        background-color: #d1334e;
-        content: "";
-        height: 4px;
-        width: 174px;
-        display: block;
-        margin: 16px 0px 16px 0px;
+        &::after {
+          background-color: #d1334e;
+          content: "";
+          height: 4px;
+          width: 174px;
+          display: block;
+          margin: 16px 0px 16px 0px;
+        }
+
+        font-size: 42px;
       }
-
-      font-size: 42px;
     }
 
     .text__greeting {
@@ -73,13 +87,16 @@
 
   }
 
-
 }
 
-.cube__gallery__container{
+.section__subtitle{
+  color:#000;
+  font-family: $font-roboto;
+  font-size: 100%;
+}
 
+.cube__gallery__container {
   display: flex;
   flex-direction: row;
-  .swiper--cube{
-  }
+
 }

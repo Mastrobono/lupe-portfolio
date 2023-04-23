@@ -5,7 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import Gallery from "@/components/Gallery";
-import GalleryTravel from "@/components/GalleryTravel";
+import GalleryTravel from "@/components/galleries/GalleryTravel";
 
 export default function Home() {
   useEffect(() => {
@@ -22,15 +22,20 @@ export default function Home() {
       </Head>
       <main>
         <Header></Header>
-        <Gallery
-          album={{ id: "editorial", layout: "masonry" }}
-          section={{
-            title: "EDITORIAL",
-            position: "left",
-            aosEffect: "fade-left",
-          }}
-        />
-        <GalleryTravel />
+        <div className={styles.page__container__full}>
+          <Gallery
+            album={{ id: "editorial", layout: "masonry" }}
+            section={{
+              title: "EDITORIAL PRODUCTIONS",
+              titlePosition: "start",
+              aosEffect: "fade-up",
+              backgroundColor: "#edf5f8"
+            }}
+          />
+        </div>
+        <div className={styles.page__container__full}>
+          <GalleryTravel />
+        </div>
       </main>
     </>
   );

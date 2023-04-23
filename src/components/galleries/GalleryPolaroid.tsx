@@ -11,18 +11,35 @@ import styles from "@/styles/gallery.module.scss";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper";
 import Image from "next/image";
 import getPhotos from "@/utilities/getPhotos";
+import Lightbox, { SlideImage } from "yet-another-react-lightbox";
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import NextJsImage from "../NextJsImage";
 
-const GalleryPolaroid = ({albumId}: {albumId:string}) => {
-  const [photos, setPhotos] = useState();
+const GalleryPolaroid = ({ albumId }: { albumId: string }) => {
+  const [photos, setPhotos] = useState<SlideImage[]>([]);
+  const [ligthboxIndex, setLigthboxIndex] = useState<number>(-1);
   useEffect(() => setPhotos(getPhotos(albumId)), [albumId]);
 
-  const Slides = ($photos) => {
+  <Lightbox
+    open={ligthboxIndex >= 0}
+    index={ligthboxIndex}
+    close={() => setLigthboxIndex(-1)}
+    slides={photos}
+    plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
+    render={{ slide: NextJsImage }}
+  />
+
+
+  const Slides = ($photos: SlideImage[]) => {
     return $photos?.map((photo, index) => (
       <SwiperSlide key={`polaroid-img-${index}`}>
-        <div className="polaroid__border">
+        <div className="polaroid__border" onClick={() => setLigthboxIndex(index)}>
           <Image
             className={styles.polaroid}
-            src={photo}
+            src={photo.src}
             width={200}
             height={200}
             alt="polaroid image"
@@ -51,6 +68,14 @@ const GalleryPolaroid = ({albumId}: {albumId:string}) => {
         data-aos="fade-right"
         data-aos-duration="1500"
       >
+        <Lightbox
+          open={ligthboxIndex >= 0}
+          index={ligthboxIndex}
+          close={() => setLigthboxIndex(-1)}
+          slides={photos}
+          plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
+          render={{ slide: NextJsImage }}
+        />
         <Swiper
           className="polaroid__swiper"
           effect={"coverflow"}

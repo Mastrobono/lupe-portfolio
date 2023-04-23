@@ -80,22 +80,42 @@ $blank__creme : #dfd6d6;
       }
     }
   }
+  
+}
 
-  .swiper-pagination-bullets {
-    display: none;
+
+
+.swiper-cards {
+  width: 500px;
+  height:600px;
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    img{
+      object-fit: contain;
+    }
   }
 }
 
-.swiper--cube {
-  width: 100%;
+.swiper-pagination-bullets {
+  display: none;
+}
+.swiper-cube {
+  width: 600px;
   .swiper-slide {
     background-position: center;
     background-size: cover;
+    margin-bottom:24px;
   }
   
   .swiper-slide img {
     display: block;
-    width: 100%;
+    width: 600px;
+    
   }
   
 }

@@ -4,7 +4,7 @@ import styles from "@/styles/header.module.scss";
 import HeaderImage from "../../public/header.jpg";
 import ArrowIcon from "./ArrowIcon";
 import SocialMediaIcons from "./SocialMediaIcons";
-import GalleryPolaroid from "./GalleryPolaroid";
+import GalleryPolaroid from "./galleries/GalleryPolaroid";
 import React from "react";
 
 const socialMediaUrls = {

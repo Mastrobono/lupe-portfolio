@@ -7,10 +7,8 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { useState, useEffect } from "react";
+import { ObjectType } from "typescript";
 
-interface props {
-  socialMediasLinks: Array<socialMediaType>;
-}
 
 type socialMediaType = {
   [N in "youtube" | "instagram" | "tiktok"]?: string;
@@ -19,10 +17,9 @@ type socialMediaType = {
 interface socialMedia {
   socialMediaKey: string;
   url: string;
-  isAnimated: boolean;
 }
 
-const SocialMediaIcons = (socialMediaLinks: props) => {
+const SocialMediaIcons = (socialMediaLinks: Array<socialMediaType>) => {
   const socialMediaLinksArr = Object.keys(socialMediaLinks);
 
   const SocialMediaIcon = ({
@@ -33,10 +30,10 @@ const SocialMediaIcons = (socialMediaLinks: props) => {
       socialMediaKey == "instagram"
         ? faInstagram
         : socialMediaKey == "youtube"
-        ? faYoutube
-        : socialMediaKey == "tiktok"
-        ? faTiktok
-        : faInstagram;
+          ? faYoutube
+          : socialMediaKey == "tiktok"
+            ? faTiktok
+            : faInstagram;
     return (
       <FontAwesomeIcon
         key={socialMediaKey}
@@ -58,7 +55,7 @@ const SocialMediaIcons = (socialMediaLinks: props) => {
           socialMediaKey && (
             <SocialMediaIcon
               socialMediaKey={socialMediaKey}
-              url={socialMediaLinks[socialMediaKey]}
+              url={socialMediaLinks[socialMediaKey as keyof Array<socialMediaType>] as string}
             />
           )
         );
