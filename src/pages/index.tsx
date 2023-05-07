@@ -1,11 +1,23 @@
-import Header from "@/components/Header";
-import Head from "next/head";
+//Import styles
 import styles from "@/styles/index.module.scss";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-cards";
+
+//Aos scroll
 import AOS from "aos";
 import "aos/dist/aos.css";
+
 import { useEffect } from "react";
-import Gallery from "@/components/Gallery";
-import GalleryTravel from "@/components/galleries/GalleryTravel";
+
+// Import components
+import Head from "next/head";
+import Header from "@/components/Header";
+import HeadlineGallery from "@/components/galleries/HeadlineGallery";
+import Gallery from "@/components/galleries/Gallery";
+import TravelGallery from "@/components/galleries/TravelGallery";
 
 export default function Home() {
   useEffect(() => {
@@ -26,15 +38,13 @@ export default function Home() {
           <Gallery
             album={{ id: "editorial", layout: "masonry" }}
             section={{
-              title: "EDITORIAL PRODUCTIONS",
-              titlePosition: "start",
-              aosEffect: "fade-up",
-              backgroundColor: "#edf5f8"
+              Headline: <HeadlineGallery title="Editorial Productions"/>,
+              backgroundColor: "#edf5f8",
             }}
           />
         </div>
-        <div className={styles.page__container__full}>
-          <GalleryTravel />
+        <div className={styles.page__container}>
+          <TravelGallery />
         </div>
       </main>
     </>

@@ -35,10 +35,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-#images
-*.jpg 
-*.jpeg
-
 #videos
 *.mov
 *.HEIC

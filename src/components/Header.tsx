@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/header.module.scss";
 import HeaderImage from "../../public/header.jpg";
-import ArrowIcon from "./ArrowIcon";
-import SocialMediaIcons from "./SocialMediaIcons";
-import GalleryPolaroid from "./galleries/GalleryPolaroid";
+import ArrowIcon from "./icons/ArrowIcon";
+import SocialMediaIcons from "./icons/SocialMediaIcons";
+import PolaroidGallery from "./galleries/PolaroidGallery";
 import React from "react";
 
 const socialMediaUrls = {
@@ -45,8 +45,8 @@ const Header = () => {
               Campañas - Editorial - Viajes - Ketupe - Colaboraciones con marcas
               - Tiktoks - Entrevistas
             </p>
-            <SocialMediaIcons {...socialMediaUrls} />
-            <GalleryPolaroid albumId="polaroid"/>
+            <SocialMediaIcons socialMediaLinks={socialMediaUrls} />
+            <PolaroidGallery albumId="polaroid"/>
           </div>
         </div>
         <div className={styles.container__image}>

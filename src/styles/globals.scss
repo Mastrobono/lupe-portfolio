@@ -47,7 +47,6 @@ $blank__creme : #dfd6d6;
       left: 50%;
       top: 40%;
       transform: translate(-50%, -30%);
-
     }
 
     img {
@@ -86,7 +85,7 @@ $blank__creme : #dfd6d6;
 
 
 .swiper-cards {
-  width: 500px;
+  width: 100%;
   height:600px;
   .swiper-slide {
     display: flex;
