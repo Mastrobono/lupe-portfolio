@@ -12,23 +12,12 @@ import "swiper/css/effect-cards";
 
 // import required modules
 import { Autoplay, EffectCards, EffectCube, Pagination } from "swiper";
-import { SlideImage } from "yet-another-react-lightbox/*";
-import getPhotos from "@/hooks/useGetPhotos";
 
-const CardsGallery = ({
-  albumId,
-  imageTitle,
-}: {
-  albumId: string;
-  imageTitle?: string;
-}) => {
-  const [photos, setPhotos] = useState<SlideImage[]>([]);
-  useEffect(() => {
-    setPhotos(getPhotos(albumId, imageTitle));
-  }, []);
+interface Props {
+  album: Array<string>
+}
+const CardsGallery = ({album}: Props) => {
 
-
-  
   return (
     <Swiper
       effect={"cards"}
@@ -41,11 +30,10 @@ const CardsGallery = ({
       modules={[EffectCards, Pagination, Autoplay]}
       className="swiper-cards"
     >
-      {photos.map((photo) => {
+      {album.map((photo) => {
         return (
           <SwiperSlide>
             <img src={photo.src} />
-            <p>{imageTitle}</p>
           </SwiperSlide>
         );
       })}

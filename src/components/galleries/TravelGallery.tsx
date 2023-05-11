@@ -11,13 +11,14 @@ import "swiper/css/effect-cube";
 import "swiper/css/pagination";
 import img_0 from "../../../public/assets/images/dynamic/miami_0.jpeg";
 import img_1 from "../../../public/assets/images/dynamic/miami_1.jpeg";
-import getVideos from "@/hooks/useGetVideos";
 // import required modules
 import { EffectCube, Pagination } from "swiper";
 
 import HeadlineGallery from "./HeadlineGallery";
 import CardsGallery from "./CardsGallery";
 import YouTube, { YouTubeProps } from "react-youtube";
+import getPhotos from "@/hooks/useGetPhotos";
+import getVideos from "@/hooks/useGetVideos";
 
 const TravelGallery = () => {
   const opts: YouTubeProps["opts"] = {
@@ -28,16 +29,10 @@ const TravelGallery = () => {
     },
     title: "test",
   };
-  const youtubeVideos = getVideos("miami");
-  const RenderYoutubeVideos = youtubeVideos.map((video, index) => (
-    <YouTube
-      videoId={video}
-      opts={opts}
-      className={`${styles.video__youtube} ${
-        index == 0 ? styles.video__youtube__main : ""
-      }`}
-    />
-  ));
+  const albumMiamiVideos = getVideos("miami");
+  const albumMiamiCards = getPhotos("miami_bg");
+
+  const albumCorrientes = getPhotos("corrientes");
 
   return (
     <div
@@ -63,22 +58,29 @@ const TravelGallery = () => {
 
         <div className={styles.gallery__container__travels}>
           <div className={styles.wrapper__cards}>
-            <CardsGallery albumId="miami_bg" />
+            {<CardsGallery album={albumMiamiCards} />}
           </div>
           <div className={styles.wrapper__img}>
             <img src={img_0.src} className={styles.img} />
             <img src={img_1.src} className={styles.img} />
           </div>
           <div className={styles.wrapper__video}>
-            {RenderYoutubeVideos.map((YoutubeVideo) => YoutubeVideo)}
+            <Gallery
+              album={albumMiamiVideos}
+              section={{
+                backgroundColor: "#edf5f8",
+                layout: "masonry",
+              }}
+            />
           </div>
         </div>
       </div>
       <Gallery
-        album={{ id: "corrientes", layout: "masonry" }}
+        album={albumCorrientes}
         section={{
-          Headline: <HeadlineGallery title="Travels" subtitle="Corrientes"/>,
+          Headline: <HeadlineGallery title="Travels" subtitle="Corrientes" />,
           backgroundColor: "#edf5f8",
+          layout: "masonry",
         }}
       />
     </div>

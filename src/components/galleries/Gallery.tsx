@@ -8,34 +8,32 @@ import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-import NextJsImage from "../../utilities/NextJsImage";
+import NextJsImage from "@/utilities/NextJsImage";
 import getPhotos from "@/hooks/useGetPhotos";
 import YouTubePlayer from "react-player/youtube";
-
+import getVideos from "@/hooks/useGetVideos";
+import YouTube, { YouTubeProps } from "react-youtube";
+import RenderYoutubeVideos from "./YoutubeVideos";
+import { albumType } from "@/data/data";
+import isImage from "@/utilities/isImage";
 interface props {
   album: album;
-  section?: section;
+  section: section;
 }
 
-interface album {
-  id: string;
-  layout: "masonry" | "columns" | "rows";
-}
+type album = Array<Array<string>>;
 interface section {
   Headline?: JSX.Element;
   backgroundColor: string;
+  layout: "masonry" | "columns" | "rows";
 }
 
 const Gallery = ({ album, section }: props) => {
-  const [photos, setPhotos] = useState<SlideImage[]>([]);
   const [ligthboxIndex, setLigthboxIndex] = useState<number>(-1);
-  useEffect(() => {
-    setPhotos(getPhotos(album.id));
-  }, []);
 
-  const RenderCustomPhoto: RenderPhoto = useCallback(
+  const RenderCustom: RenderPhoto = useCallback(
     ({ imageProps: { alt, style, title, src, ...restImageProps } }) => {
-      return (
+      return isImage(src) ? (
         <div>
           <img
             alt={alt}
@@ -49,27 +47,8 @@ const Gallery = ({ album, section }: props) => {
             data-aos-offset="-300px"
           />
         </div>
-      );
-    },
-    []
-  );
-
-  const RenderCustomVideo: RenderPhoto = useCallback(
-    ({ imageProps: { alt, style, title, src, ...restImageProps } }) => {
-      return (
-        <div>
-          <img
-            alt={alt}
-            style={{ ...style, width: "100%", padding: 0 }}
-            src={src}
-            title={title}
-            {...restImageProps}
-            data-aos="fade-right"
-            data-aos-easing="linear"
-            data-aos-duration="1000"
-            data-aos-offset="-300px"
-          />
-        </div>
+      ) : (
+        RenderYoutubeVideos(src)
       );
     },
     []
@@ -84,7 +63,7 @@ const Gallery = ({ album, section }: props) => {
         open={ligthboxIndex >= 0}
         index={ligthboxIndex}
         close={() => setLigthboxIndex(-1)}
-        slides={photos}
+        slides={album}
         plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
         render={{ slide: NextJsImage }}
       />
@@ -93,7 +72,7 @@ const Gallery = ({ album, section }: props) => {
         {section && section.Headline && section.Headline}
         <div className={styles.album__content}>
           <PhotoAlbum
-            photos={photos.map((photos: any) => ({
+            photos={album.map((photos: any) => ({
               src: photos.src,
               width: photos.width,
               height: photos.height,
@@ -104,11 +83,11 @@ const Gallery = ({ album, section }: props) => {
               if (containerWidth < 800) return 3;
               return 4;
             }}
-            layout={album.layout}
+            layout={section.layout}
             spacing={24}
             padding={0}
             onClick={({ index }) => setLigthboxIndex(index)}
-            renderPhoto={RenderCustomPhoto}
+            renderPhoto={RenderCustom}
           />
         </div>
       </div>

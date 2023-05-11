@@ -1,10 +1,17 @@
-import { videosPerAlbumLinks } from "@/enums/videos";
+import { videos } from "@/data/data";
 
-type videosPerAlbumLinks = keyof typeof videosPerAlbumLinks;
+type videosPerAlbumLinks = keyof typeof videos;
 
 function getVideos(albumId: string) {
-  return Object.keys(
-    videosPerAlbumLinks[albumId as videosPerAlbumLinks]
-  ) as Array<videosPerAlbumLinks>;
+  const videosId = [
+    albumId as videosPerAlbumLinks,
+  ] as Array<videosPerAlbumLinks>;
+  return videos[videosId].map((video) => {
+    return {
+      src: video,
+      width: "300",
+      height: "300",
+    };
+  });
 }
 export default getVideos;

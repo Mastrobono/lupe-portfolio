@@ -1,8 +1,8 @@
 export const photosPerAlbumLenght = {
-  polaroid: 4,
-  corrientes: 12,
-  miami: 2,
-  miami_bg: 5,
-  editorial: 12,
-  ketupe: 9,
+  polaroid: {type: 'photo', qty : 4},
+  corrientes: {type: 'photo', qty : 12},
+  miami: {type: 'photo', qty : 2},
+  miami_bg: {type: 'photo', qty : 5},
+  editorial: {type: 'photo', qty : 12},
+  ketupe: {type: 'photo', qty : 9},
 };

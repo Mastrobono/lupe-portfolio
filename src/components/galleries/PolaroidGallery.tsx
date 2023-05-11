@@ -86,7 +86,7 @@ const PolaroidGallery = ({ albumId }: { albumId: string }) => {
   const [lightboxIndex, setLightboxIndex] = useState<number>(-1);
 
   //Get Photos
-  useEffect(() => setPhotos(getPhotos(albumId)), [albumId, lightboxIndex]);
+  useEffect(() => setPhotos(getPhotos({ albumId: })), [albumId, lightboxIndex]);
 
   //Lightbox state handler
   const onOpenLightboxHandler = (lightboxIndex: number) =>
