@@ -58,6 +58,7 @@ const Gallery = ({ album, section }: props) => {
           <div className="icon--expand">
             {RenderMaximizeMinimizeIcon(lightboxIndex)}
           </div>
+
         </div>
       ) : (
         <div className="album__photo" style={{ width: "100%", height: "400px" }}>
@@ -81,6 +82,7 @@ const Gallery = ({ album, section }: props) => {
         open={lightboxIndex >= 0}
         index={lightboxIndex}
         close={() => setLightboxIndex(-1)}
+        //@ts-ignore
         slides={album}
         plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
         render={{ slide: NextJsImage }}
@@ -109,6 +111,7 @@ const Gallery = ({ album, section }: props) => {
             spacing={24}
             padding={0}
             onClick={({ index }) => setLightboxIndex(index)}
+            //@ts-ignore
             renderPhoto={RenderCustom}
           />
         </div>

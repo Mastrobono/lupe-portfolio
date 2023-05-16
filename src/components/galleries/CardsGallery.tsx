@@ -50,7 +50,7 @@ const CardsGallery = ({ album, section }: Props) => {
         return (
           <SwiperSlide key={`swiperSlide-${index}`}>
             <Image
-              src={photo}
+              src={photo.src}
               className={styles.img}
               alt={"card photographie"}
               fill

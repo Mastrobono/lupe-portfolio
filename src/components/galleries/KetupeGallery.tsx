@@ -18,11 +18,18 @@ import useGetPhotos from "@/hooks/useGetPhotos";
 import HeadlineGallery from "./HeadlineGallery";
 import RenderYoutubeVideos from "./YoutubeVideos";
 import NextJsImage from "@/utilities/NextJsImage";
+import useGetAosOpt from "@/hooks/useGetAosOpt";
 interface section {
   Headline?: JSX.Element;
   backgroundColor: string;
   layout: "masonry" | "columns" | "rows";
 }
+
+const aosOpts = [
+  useGetAosOpt("fade-up"),
+  useGetAosOpt("fade-right"),
+  useGetAosOpt("fade-right"),
+];
 
 const KetupeGallery = ({ section }: { section: section }) => {
   const albumPhotos = useGetPhotos("ketupe");
@@ -37,12 +44,7 @@ const KetupeGallery = ({ section }: { section: section }) => {
         }}
       >
         <div className={`${styles.album__container}`}>
-          <HeadlineGallery
-            title="Ketupe"
-            subtitle=""
-            aosAnimation="fade-right"
-            style={{alignSelf: 'center', color:'#fff'}}
-          />
+          {section.Headline}
 
           <div
             className={`${styles.gallery__container__cards} ${styles["gallery__container__cards--ketupe"]}`}
@@ -54,6 +56,7 @@ const KetupeGallery = ({ section }: { section: section }) => {
                   src={albumHeaderPhotoSrc}
                   alt="Main Image Ketupe"
                   className={styles.cards__content}
+                  {...aosOpts[0]}
                 />
               </div>
               <div className={styles["wrapper__cards--full"]}>

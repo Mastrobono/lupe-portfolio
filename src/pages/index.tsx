@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-cards";
 
 //Aos scroll
+//@ts-ignore
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -51,7 +52,7 @@ export default function Home() {
     useGetAosOpt("fade-left"),
     useGetAosOpt("fade-right"),
     useGetAosOpt("fade-left"),
-    useGetAosOpt("fade-right"),
+    useGetAosOpt("fade-left"),
   ];
 
   return (
@@ -161,7 +162,7 @@ export default function Home() {
                 <HeadlineGallery
                   title="Brands Content"
                   aosAnimation={"fade-right"}
-                  style={{ alignSelf: "start", color: "#000" }}
+                  style={{ alignSelf: "end", color: "#000" }}
                 />
               ),
               backgroundColor: "#edf5f8",
@@ -176,9 +177,9 @@ export default function Home() {
           section={{
             Headline: (
               <HeadlineGallery
-                title="Fila"
-                aosAnimation={"fade-left"}
-                style={{ alignSelf: "center", color: "#000" }}
+                title="Ketupe"
+                aosAnimation={"fade-down"}
+                style={{ alignSelf: "center", color: "#fff" }}
               />
             ),
             backgroundColor: "#edf5f8",

@@ -5,7 +5,7 @@ import {
   useLightboxProps,
 } from "yet-another-react-lightbox/core";
 
-export default function NextJsImage({ slide, rect }) {
+export default function NextJsImage({ slide, rect } : {slide: any, rect: any}) {
   const { imageFit } = useLightboxProps().carousel;
   const cover = isImageSlide(slide) && isImageFitCover(slide, imageFit);
 

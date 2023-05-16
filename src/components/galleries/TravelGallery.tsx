@@ -93,6 +93,7 @@ const TravelGallery = ({ section }: { section: section }) => {
               title="Travels"
               subtitle="Corrientes"
               aosAnimation="fade-right"
+              style={{alignSelf: 'end', color:'#000'}}
             />
           ),
           backgroundColor: "#edf5f8",
