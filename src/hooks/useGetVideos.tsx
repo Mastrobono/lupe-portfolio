@@ -6,6 +6,7 @@ function getVideos(albumId: string) {
   const videosId = [
     albumId as videosPerAlbumLinks,
   ] as Array<videosPerAlbumLinks>;
+  //@ts-ignore
   return videos[videosId].map((video) => {
     return {
       src: video,
