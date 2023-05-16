@@ -42,8 +42,7 @@ const Header = () => {
               A CONTENT CREATOR
             </p>
             <p data-aos="fade-right" data-aos-duration="1500">
-              Campañas - Editorial - Viajes - Ketupe - Colaboraciones con marcas
-              - Tiktoks - Entrevistas
+              Campaigns - Editorial - Travels - Brands - Ketupe - TikToks
             </p>
             <SocialMediaIcons socialMediaLinks={socialMediaUrls} />
             <PolaroidGallery /> 

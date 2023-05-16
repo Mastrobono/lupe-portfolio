@@ -115,7 +115,7 @@ export default function Home() {
               backgroundColor: "#edf5f8",
               layout: "masonry",
               columns: 4,
-              aosOpt: { ...aosOpts },
+              aosOpt: { ...aosOpts[1] },
             }}
           />
         </div>
@@ -168,7 +168,7 @@ export default function Home() {
               backgroundColor: "#edf5f8",
               layout: "masonry",
               columns: 5,
-              aosOpt: { ...aosOpts[3] },
+              aosOpt: { ...aosOpts[2] },
             }}
           />
         </div>

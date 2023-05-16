@@ -53,15 +53,17 @@ const Gallery = ({ album, section }: props) => {
             src={src}
             {...restImageProps}
             alt={alt}
-            
           />
           <div className="icon--expand">
             {RenderMaximizeMinimizeIcon(lightboxIndex)}
           </div>
-
         </div>
       ) : (
-        <div className="album__photo" style={{ width: "100%", height: "400px" }}>
+        <div
+          className="album__photo"
+          {...section?.aosOpt}
+          style={{ width: "100%", height: "400px" }}
+        >
           {RenderYoutubeVideos(src)}
         </div>
       );
@@ -76,7 +78,6 @@ const Gallery = ({ album, section }: props) => {
         backgroundColor: section?.backgroundColor,
         opacity: section?.opacity,
       }}
-     
     >
       <Lightbox
         open={lightboxIndex >= 0}
@@ -88,7 +89,7 @@ const Gallery = ({ album, section }: props) => {
         render={{ slide: NextJsImage }}
       />
 
-      <div className={styles.album__container} >
+      <div className={styles.album__container}>
         {section && section.Headline && section.Headline}
         <div className={styles.album__content}>
           <PhotoAlbum
