@@ -48,7 +48,7 @@ const CardsGallery = ({ album, section }: Props) => {
       />
       {album.map((photo, index) => {
         return (
-          <SwiperSlide>
+          <SwiperSlide key={`swiperSlide-${index}`}>
             <Image
               src={photo}
               className={styles.img}

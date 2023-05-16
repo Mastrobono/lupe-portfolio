@@ -25,7 +25,7 @@ const Header = () => {
               data-aos-duration="1500"
               className={styles.text__greeting}
             >
-              HI! I'M
+              HI! I`&apos;`M
             </p>
             <h1
               data-aos="fade-right"
