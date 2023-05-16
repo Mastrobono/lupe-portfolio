@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/header.module.scss";
-import HeaderImage from "../../public/header.jpg";
+import HeaderImage from "../../public/assets/images/dynamic/header.jpeg";
 import ArrowIcon from "./icons/ArrowIcon";
 import SocialMediaIcons from "./icons/SocialMediaIcons";
 import PolaroidGallery from "./galleries/PolaroidGallery";
