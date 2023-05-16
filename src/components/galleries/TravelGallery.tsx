@@ -35,7 +35,9 @@ const TravelGallery = ({ section }: { section: section }) => {
   const albumMiamiVideos = useGetVideos("miami");
   const albumCorrientes = useGetPhotos("corrientes");
 
-  const aosOpt = useGetAosOpt("fade-left");
+  const aosOpts = [useGetAosOpt('fade-right'), useGetAosOpt('fade-left')]
+
+
   return (
     <div
       className={styles.page__container}
@@ -49,10 +51,11 @@ const TravelGallery = ({ section }: { section: section }) => {
             title="Travels"
             subtitle="Miami Beach, US"
             aosAnimation="fade-left"
+            style={{alignSelf: 'end', color:'#000'}}
           />
 
           <div className={styles["gallery__container__cards--travels"]}>
-            <div style={{ width: "65%" }} {...useGetAosOpt("fade-right")}>
+            <div className={styles["cards__content"]} {...aosOpts[0]}>
               {
                 <CardsGallery
                   album={albumMiamiBgCards}
@@ -60,7 +63,7 @@ const TravelGallery = ({ section }: { section: section }) => {
                 />
               }
             </div>
-            <div style={{ width: "25%" }} {...useGetAosOpt("fade-left")}>
+            <div className={styles["cards__content"]} {...aosOpts[1]}>
               {
                 <CardsGallery
                   album={albumMiamiProfileCards}

@@ -26,11 +26,38 @@
 
   &__cards {
     width: 100%;
+
     &--travels {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+      .cards__content {
+        &:nth-child(1){
+          width:65%;
+          @media (max-width: 768px) {
+            width:100%;
+          }
+        }
+        &:nth-child(2){
+          width:25%;
+          @media (max-width: 768px) {
+            margin-top:24px;
+            width:100%;
+          }
+        }
+        
+      }
+    }
+
+    &--ketupe{
+      .cards__content{
+        position: inherit !important;
+      }
     }
 
     &--fila {
@@ -90,7 +117,6 @@
     width: 100%;
     align-self: flex-start;
     padding: 2.5% 6%;
-   
   }
 
   .text__container {
@@ -132,6 +158,7 @@
   color: #000;
   font-family: $font-roboto;
   font-size: 100%;
+  margin-bottom:32px;
 }
 
 .cube__gallery__container {

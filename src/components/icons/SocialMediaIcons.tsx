@@ -50,10 +50,11 @@ const SocialMediaIcons = ({ socialMediaLinks }: { socialMediaLinks: socialMediaT
       data-aos-duration="1500"
       className={styles.container}
     >
-      {socialMediaLinksArr.map((socialMediaKey: string) => {
+      {socialMediaLinksArr.map((socialMediaKey: string, index) => {
         return (
           socialMediaKey && (
             <SocialMediaIcon
+            key={`icon-${index}`}
               socialMediaKey={socialMediaKey}
               url={socialMediaLinks[socialMediaKey as keyof socialMediaType] as string}
             />

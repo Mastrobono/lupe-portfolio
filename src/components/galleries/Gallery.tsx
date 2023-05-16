@@ -60,7 +60,7 @@ const Gallery = ({ album, section }: props) => {
           </div>
         </div>
       ) : (
-        <div style={{ width: "100%", height: "400px" }}>
+        <div className="album__photo" style={{ width: "100%", height: "400px" }}>
           {RenderYoutubeVideos(src)}
         </div>
       );
@@ -101,8 +101,8 @@ const Gallery = ({ album, section }: props) => {
                 }, 500),
             }))}
             columns={(containerWidth) => {
-              if (containerWidth < 400) return 2;
-              if (containerWidth < 800) return 3;
+              if (containerWidth < 600) return 2;
+              if (containerWidth < 700) return 3;
               return section.columns;
             }}
             layout={section.layout}

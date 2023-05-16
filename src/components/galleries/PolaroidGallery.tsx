@@ -16,7 +16,7 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import NextJsImage from "../../utilities/NextJsImage";
 import useGetPhotos from "@/hooks/useGetPhotos";
 import RenderMaximizeMinimizeIcon from "../MazimizeMinimizeIcon";
-
+import useCheckMobileScreen from "@/hooks/useCheckMobileScreen";
 //Swiper component, recives photos, lightBox State handler and MaximizeMinimize icon
 const SwiperGallery = ({
   photos,
@@ -27,6 +27,7 @@ const SwiperGallery = ({
   onOpenLightboxHandler: (index: number) => void;
   RenderMaximizeMinimizeIcon: () => JSX.Element;
 }) => {
+  const isMobileScreen = useCheckMobileScreen();
   const Slides = photos?.map((photo, index) => (
     <SwiperSlide key={`polaroid-img-${index}`}>
       <div
@@ -57,7 +58,7 @@ const SwiperGallery = ({
       effect={"coverflow"}
       grabCursor={true}
       centeredSlides={true}
-      slidesPerView={3.5}
+      slidesPerView={isMobileScreen ? 2 : 3.5} //3.5 desktop, 1 mobile
       autoplay={{
         delay: 2500,
         disableOnInteraction: false,

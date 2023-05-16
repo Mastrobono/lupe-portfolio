@@ -14,7 +14,7 @@ function getPhotos(albumId: string) {
       );
       newPhotos[photoIndex].title = albumId[0].toUpperCase() + albumId.slice(1);
     } catch (err) {
-      console.log("err", err);
+      //console.log("err", err);
     }
   }
   return newPhotos;

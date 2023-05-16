@@ -28,6 +28,7 @@ interface section {
 
 import useGetAosOpt from "@/hooks/useGetAosOpt";
 
+
 const FilaGallery = ({ section }: { section: section }) => {
   const albumFilaCards = [
     useGetPhotos("fila").slice(6, 9),
@@ -35,6 +36,8 @@ const FilaGallery = ({ section }: { section: section }) => {
     useGetPhotos("fila").slice(0, 3),
   ];
   const albumFilaVideo = useGetVideos("fila")[0].src;
+
+  const aosOpts = [useGetAosOpt('fade-down'), useGetAosOpt('fade-up')]
 
   return (
     <div
@@ -44,20 +47,20 @@ const FilaGallery = ({ section }: { section: section }) => {
       }}
     >
       <div className={`${styles.album__container}`}>
-        <HeadlineGallery title="Fila" subtitle="" aosAnimation={"fade-left"} />
+        <HeadlineGallery title="Fila" subtitle="" aosAnimation={"fade-left"} style={{alignSelf: 'start', color:'#000'}} />
 
         <div
           className={`${styles.gallery__container__cards} ${styles["gallery__container__cards--fila"]}`}
         >
           <div className={styles.wrapper}>
-            {albumFilaCards.map((album) => (
-              <div className={`${styles.wrapper__cards}`} {...useGetAosOpt('fade-down')}>
+            {albumFilaCards.map((album, index) => (
+              <div key={`filaCard-${index}`} className={`${styles.wrapper__cards}`} {...aosOpts[0]}>
                 <CardsGallery album={album} section={{ imageFit: "cover" }} />
               </div>
             ))}
             <div
               className={`${styles.wrapper__video}`}
-              {...useGetAosOpt("fade-up")}
+              {...aosOpts[1]}
             >
               {RenderYoutubeVideos(albumFilaVideo)}
             </div>

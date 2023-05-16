@@ -34,18 +34,27 @@ const KetupeGallery = ({ section }: { section: section }) => {
         className={`${styles.gallery__container}`}
         style={{
           backgroundColor: "#edf5f81c",
-          
         }}
       >
         <div className={`${styles.album__container}`}>
-          <HeadlineGallery title="Ketupe" subtitle="" />
+          <HeadlineGallery
+            title="Ketupe"
+            subtitle=""
+            aosAnimation="fade-right"
+            style={{alignSelf: 'center', color:'#fff'}}
+          />
 
           <div
             className={`${styles.gallery__container__cards} ${styles["gallery__container__cards--ketupe"]}`}
           >
             <div className={styles.wrapper}>
               <div className={`${styles.wrapper__cards}`}>
-                <Image fill src={albumHeaderPhotoSrc} alt="test" style={{zIndex: 0}} />
+                <Image
+                  fill
+                  src={albumHeaderPhotoSrc}
+                  alt="Main Image Ketupe"
+                  className={styles.cards__content}
+                />
               </div>
               <div className={styles["wrapper__cards--full"]}>
                 <Gallery
@@ -54,7 +63,7 @@ const KetupeGallery = ({ section }: { section: section }) => {
                     backgroundColor: "#edf5f81c",
                     layout: "masonry",
                     columns: 3,
-                    opacity:0.8
+                    opacity: 0.8,
                   }}
                 />
               </div>

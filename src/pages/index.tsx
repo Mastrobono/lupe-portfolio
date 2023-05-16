@@ -47,7 +47,12 @@ export default function Home() {
       .concat(useGetVideos("tiktokLifestyle")),
   };
 
-  console.log("hero", albums.brandsContent);
+  const aosOpts = [
+    useGetAosOpt("fade-left"),
+    useGetAosOpt("fade-right"),
+    useGetAosOpt("fade-left"),
+    useGetAosOpt("fade-right"),
+  ];
 
   return (
     <>
@@ -67,12 +72,13 @@ export default function Home() {
                 <HeadlineGallery
                   title="Editorial Productions"
                   aosAnimation={"fade-right"}
+                  style={{ alignSelf: "end", color: "#000" }}
                 />
               ),
               backgroundColor: "#edf5f8",
               layout: "masonry",
               columns: 4,
-              aosOpt:{...useGetAosOpt("fade-left")}
+              aosOpt: { ...aosOpts[0] },
             }}
           />
         </div>
@@ -86,6 +92,7 @@ export default function Home() {
                 <HeadlineGallery
                   title="Editorial Productions"
                   aosAnimation={"fade-left"}
+                  style={{ alignSelf: "end", color: "#000" }}
                 />
               ),
               backgroundColor: "#edf5f8",
@@ -97,11 +104,17 @@ export default function Home() {
           <Gallery
             album={albums.marcas}
             section={{
-              Headline: <HeadlineGallery title="Brands Productions" aosAnimation={"fade-left"} />,
+              Headline: (
+                <HeadlineGallery
+                  title="Brands Productions"
+                  aosAnimation={"fade-left"}
+                  style={{ alignSelf: "end", color: "#000" }}
+                />
+              ),
               backgroundColor: "#edf5f8",
               layout: "masonry",
               columns: 4,
-              aosOpt:{...useGetAosOpt("fade-right")}
+              aosOpt: { ...aosOpts },
             }}
           />
         </div>
@@ -111,7 +124,13 @@ export default function Home() {
         >
           <FilaGallery
             section={{
-              Headline: <HeadlineGallery title="Fila" aosAnimation={"fade-left"} />,
+              Headline: (
+                <HeadlineGallery
+                  title="Fila"
+                  aosAnimation={"fade-left"}
+                  style={{ alignSelf: "start", color: "#000" }}
+                />
+              ),
               backgroundColor: "#edf5f8",
               layout: "masonry",
             }}
@@ -120,7 +139,13 @@ export default function Home() {
 
         <GanciaGallery
           section={{
-            Headline: <HeadlineGallery title="Gancia" aosAnimation={"fade-left"} />,
+            Headline: (
+              <HeadlineGallery
+                title="Gancia"
+                aosAnimation={"fade-left"}
+                style={{ alignSelf: "end", color: "#000" }}
+              />
+            ),
             backgroundColor: "#edf5f8",
             layout: "masonry",
           }}
@@ -132,23 +157,36 @@ export default function Home() {
           <Gallery
             album={albums.brandsContent}
             section={{
-              Headline: <HeadlineGallery title="Brands Content" aosAnimation={"fade-right"} />,
+              Headline: (
+                <HeadlineGallery
+                  title="Brands Content"
+                  aosAnimation={"fade-right"}
+                  style={{ alignSelf: "start", color: "#000" }}
+                />
+              ),
               backgroundColor: "#edf5f8",
               layout: "masonry",
               columns: 5,
-              aosOpt:{...useGetAosOpt("fade-left")}
+              aosOpt: { ...aosOpts[3] },
             }}
           />
         </div>
 
         <KetupeGallery
           section={{
-            Headline: <HeadlineGallery title="Fila" aosAnimation={"fade-left"} />,
+            Headline: (
+              <HeadlineGallery
+                title="Fila"
+                aosAnimation={"fade-left"}
+                style={{ alignSelf: "center", color: "#000" }}
+              />
+            ),
             backgroundColor: "#edf5f8",
             layout: "masonry",
           }}
         />
 
+        {/*
         <Gallery
           album={albums.tiktok}
           section={{
@@ -159,6 +197,7 @@ export default function Home() {
             aosOpt:{...useGetAosOpt("fade-up")}
           }}
         />
+        */}
       </main>
     </>
   );

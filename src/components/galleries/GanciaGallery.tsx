@@ -30,8 +30,10 @@ interface section {
 const GanciaGallery = ({ section }: { section: section }) => {
   const albumCards = useGetPhotos("gancia");
   const albumProfileCards = albumCards.splice(0, 3);
-  console.log("albumCards", albumCards);
   const albumVideo = useGetVideos("gancia");
+
+  const aosOpts = [useGetAosOpt('fade-right'), useGetAosOpt('fade-right'), useGetAosOpt('fade-right')]
+ 
 
   return (
     <div className={pageStyles.page__container}>
@@ -42,22 +44,22 @@ const GanciaGallery = ({ section }: { section: section }) => {
         }}
       >
         <div className={`${styles.album__container}`}>
-          <HeadlineGallery title="Gancia" subtitle="" aosAnimation="fade-left"/>
+          <HeadlineGallery title="Gancia" subtitle="" aosAnimation="fade-left" style={{alignSelf: 'start', color:'#000'}}/>
 
           <div
             className={`${styles.gallery__container__cards} ${styles["gallery__container__cards--gancia"]}`}
           >
             <div className={styles.wrapper}>
-              <div className={`${styles.wrapper__cards}`} {...useGetAosOpt('fade-right')}>
+              <div className={`${styles.wrapper__cards}`} {...aosOpts[0]}>
                 <CardsGallery
                   album={albumProfileCards}
                   section={{ imageFit: "cover" }}
                 />
               </div>
-              <div className={`${styles.wrapper__video}`} {...useGetAosOpt('fade-left')}>
+              <div className={`${styles.wrapper__video}`} {...aosOpts[1]}>
                 {RenderYoutubeVideos(albumVideo)}
               </div>
-              <div className={styles["wrapper__cards--full"]} {...useGetAosOpt('fade-up')}>
+              <div className={styles["wrapper__cards--full"]} {...aosOpts[2]}>
                 <CardsGallery
                   album={albumCards}
                   section={{ imageFit: "cover" }}
