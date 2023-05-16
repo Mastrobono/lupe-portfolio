@@ -12,7 +12,7 @@ $white: #fff;
 
 //Gallery styles
 
-$blank__creme : #dfd6d6;
+$blank__creme: #dfd6d6;
 
 .polaroid__swiper {
   width: 100%;
@@ -52,12 +52,9 @@ $blank__creme : #dfd6d6;
     img {
       display: block;
       width: 100%;
-
     }
 
     &:hover {
-
-
       .polaroid__border {
         background: #000;
         z-index: 9999;
@@ -65,28 +62,59 @@ $blank__creme : #dfd6d6;
 
       .polaroid__expand {
         opacity: 1;
-
       }
-
 
       img {
         -webkit-filter: brightness(70%);
         filter: brightness(70%);
         transform: scale(1.25);
         transition: transform 0.4s;
-
-
       }
     }
   }
-  
 }
 
+.react-photo-album {
+  .icon--expand {
+    opacity: 0;
+    position: absolute;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    cursor: pointer;
+  }
 
+  .album__photo {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 24px;
+    .react-photo-album--photo {
+      margin-bottom: 0 !important;
+      display: block;
+      width: 100%;
+      z-index: 3;
+    }
+    &:hover {
+      .react-photo-album--photo {
+        -webkit-filter: brightness(70%);
+        filter: brightness(70%);
+        transition: transform 0.4s;
+        transform: scale(1.25);
+        overflow: hidden;
+      }
+      .icon--expand {
+        opacity: 1;
+      }
+    }
+  }
+}
 
 .swiper-cards {
   width: 100%;
-  height:600px;
+  height: 600px;
   .swiper-slide {
     display: flex;
     align-items: center;
@@ -94,8 +122,8 @@ $blank__creme : #dfd6d6;
     font-size: 22px;
     font-weight: bold;
     color: #fff;
-    img{
-      object-fit: contain;
+    img {
+      object-fit: cover;
     }
   }
 }
@@ -108,13 +136,11 @@ $blank__creme : #dfd6d6;
   .swiper-slide {
     background-position: center;
     background-size: cover;
-    margin-bottom:24px;
+    margin-bottom: 24px;
   }
-  
+
   .swiper-slide img {
     display: block;
     width: 600px;
-    
   }
-  
 }

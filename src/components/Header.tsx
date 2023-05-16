@@ -46,7 +46,7 @@ const Header = () => {
               - Tiktoks - Entrevistas
             </p>
             <SocialMediaIcons socialMediaLinks={socialMediaUrls} />
-           {  /* <PolaroidGallery albumId="polaroid"/> */ }
+            <PolaroidGallery /> 
           </div>
         </div>
         <div className={styles.container__image}>

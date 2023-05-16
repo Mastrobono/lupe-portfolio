@@ -1,5 +1,5 @@
 //Import styles
-import styles from "@/styles/index.module.scss";
+import styles from "@/styles/page.module.scss";
 
 // Import Swiper styles
 import "swiper/css";
@@ -18,9 +18,13 @@ import Header from "@/components/Header";
 import HeadlineGallery from "@/components/galleries/HeadlineGallery";
 import Gallery from "@/components/galleries/Gallery";
 import TravelGallery from "@/components/galleries/TravelGallery";
-import getPhotos from "@/hooks/useGetPhotos";
-import getVideos from "@/hooks/useGetVideos";
+import useGetPhotos from "@/hooks/useGetPhotos";
+import useGetVideos from "@/hooks/useGetVideos";
 import { get } from "http";
+import FilaGallery from "@/components/galleries/FilaGallery";
+import GanciaGallery from "@/components/galleries/GanciaGallery";
+import KetupeGallery from "@/components/galleries/KetupeGallery";
+import useGetAosOpt from "@/hooks/useGetAosOpt";
 
 export default function Home() {
   useEffect(() => {
@@ -28,13 +32,23 @@ export default function Home() {
   }, []);
 
   const albums = {
-    editorial: getPhotos("editorial"),
-    fila: getVideos("fila"),
-    gancia: getVideos("gancia").concat(getPhotos("gancia")),
-    ketupe: getPhotos('ketupe')
+    editorial: useGetPhotos("editorial"),
+    fila: useGetVideos("fila").concat(useGetPhotos("fila")),
+    gancia: useGetVideos("gancia").concat(useGetPhotos("gancia")),
+    ketupe: useGetPhotos("ketupe"),
+    marcas: useGetPhotos("marcas"),
+    brandsContent: useGetVideos("mostaza")
+      .concat(useGetVideos("pantene"))
+      .concat(useGetVideos("quilmesRock"))
+      .concat(useGetVideos("sedalLollapalooza"))
+      .concat(useGetVideos("contenidoMarcas")),
+    tiktok: useGetVideos("tiktokActuacion")
+      .concat(useGetVideos("tiktokBaile"))
+      .concat(useGetVideos("tiktokLifestyle")),
   };
 
-  console.log("hero", albums.gancia);
+  console.log("hero", albums.brandsContent);
+
   return (
     <>
       <Head>
@@ -43,52 +57,108 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className={styles.app__container}>
         <Header></Header>
-        <div className={styles.page__container__full}>
+        <div className={`${styles.page__container}`}>
           <Gallery
             album={albums.editorial}
             section={{
-              Headline: <HeadlineGallery title="Editorial Productions" />,
+              Headline: (
+                <HeadlineGallery
+                  title="Editorial Productions"
+                  aosAnimation={"fade-right"}
+                />
+              ),
+              backgroundColor: "#edf5f8",
+              layout: "masonry",
+              columns: 4,
+              aosOpt:{...useGetAosOpt("fade-left")}
+            }}
+          />
+        </div>
+
+        <div
+          className={`${styles.page__container} ${styles["page__container--full"]}`}
+        >
+          <TravelGallery
+            section={{
+              Headline: (
+                <HeadlineGallery
+                  title="Editorial Productions"
+                  aosAnimation={"fade-left"}
+                />
+              ),
               backgroundColor: "#edf5f8",
               layout: "masonry",
             }}
           />
         </div>
-        <div className={styles.page__container}>
-          <TravelGallery />
-        </div>
-        <div className={styles.page__container__full}>
+        <div className={`${styles.page__container}`}>
           <Gallery
-            album={albums.fila}
+            album={albums.marcas}
             section={{
-              Headline: <HeadlineGallery title="Fila" />,
+              Headline: <HeadlineGallery title="Brands Productions" aosAnimation={"fade-left"} />,
+              backgroundColor: "#edf5f8",
+              layout: "masonry",
+              columns: 4,
+              aosOpt:{...useGetAosOpt("fade-right")}
+            }}
+          />
+        </div>
+
+        <div
+          className={`${styles.page__container} ${styles["page__container--full"]}`}
+        >
+          <FilaGallery
+            section={{
+              Headline: <HeadlineGallery title="Fila" aosAnimation={"fade-left"} />,
               backgroundColor: "#edf5f8",
               layout: "masonry",
             }}
           />
         </div>
 
-        <div className={styles.page__container}>
+        <GanciaGallery
+          section={{
+            Headline: <HeadlineGallery title="Gancia" aosAnimation={"fade-left"} />,
+            backgroundColor: "#edf5f8",
+            layout: "masonry",
+          }}
+        />
+
+        <div
+          className={`${styles.page__container} ${styles["page__container--full"]}`}
+        >
           <Gallery
-            album={albums.gancia}
+            album={albums.brandsContent}
             section={{
-              Headline: <HeadlineGallery title="Gancia" />,
+              Headline: <HeadlineGallery title="Brands Content" aosAnimation={"fade-right"} />,
               backgroundColor: "#edf5f8",
               layout: "masonry",
+              columns: 5,
+              aosOpt:{...useGetAosOpt("fade-left")}
             }}
           />
         </div>
-        <div className={styles.page__container__full}>
-          <Gallery
-            album={albums.ketupe}
-            section={{
-              Headline: <HeadlineGallery title="Ketupe" />,
-              backgroundColor: "#edf5f8",
-              layout: "masonry",
-            }}
-          />
-        </div>
+
+        <KetupeGallery
+          section={{
+            Headline: <HeadlineGallery title="Fila" aosAnimation={"fade-left"} />,
+            backgroundColor: "#edf5f8",
+            layout: "masonry",
+          }}
+        />
+
+        <Gallery
+          album={albums.tiktok}
+          section={{
+            Headline: <HeadlineGallery title="TikTok" aosAnimation={"fade-left"}/>,
+            backgroundColor: "#edf5f8",
+            layout: "masonry",
+            columns: 4,
+            aosOpt:{...useGetAosOpt("fade-up")}
+          }}
+        />
       </main>
     </>
   );
@@ -97,18 +167,9 @@ export default function Home() {
 /*
 TODO:
 
-Me falta:
-Contenido para marcaS:
-    Fila , fotos + videos
-    Gancia, fotos + videos
-    Mostaza, video
-    pANTENE, video
-    Quilmes, Video
-    Sedal, Video
-    Contenido par marcas Video
-Prodduciones para marcas : fotos
-Ketupe: Fotos
 Tiktoks: 3 tipos
+Navbar: Secciones
+Scroll Up Arrow
 
 
 */

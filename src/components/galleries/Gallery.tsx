@@ -9,13 +9,12 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import NextJsImage from "@/utilities/NextJsImage";
-import getPhotos from "@/hooks/useGetPhotos";
-import YouTubePlayer from "react-player/youtube";
-import getVideos from "@/hooks/useGetVideos";
-import YouTube, { YouTubeProps } from "react-youtube";
+import Image from "next/image";
+import "globals";
+
 import RenderYoutubeVideos from "./YoutubeVideos";
-import { albumType } from "@/data/data";
 import isImage from "@/utilities/isImage";
+import RenderMaximizeMinimizeIcon from "../MazimizeMinimizeIcon";
 interface props {
   album: album;
   section: section;
@@ -26,29 +25,44 @@ interface section {
   Headline?: JSX.Element;
   backgroundColor: string;
   layout: "masonry" | "columns" | "rows";
+  columns: number;
+  opacity?: number;
+  aosOpt?: any;
 }
 
 const Gallery = ({ album, section }: props) => {
-  const [ligthboxIndex, setLigthboxIndex] = useState<number>(-1);
+  const [lightboxIndex, setLightboxIndex] = useState<number>(-1);
 
   const RenderCustom: RenderPhoto = useCallback(
-    ({ imageProps: { alt, style, title, src, ...restImageProps } }) => {
+    ({
+      imageProps: {
+        onClick,
+        width,
+        height,
+        alt,
+        style,
+        title,
+        src,
+        ...restImageProps
+      },
+    }) => {
       return isImage(src) ? (
-        <div>
+        <div className="album__photo" onClick={onClick}>
           <img
-            alt={alt}
             style={{ ...style, width: "100%", padding: 0 }}
             src={src}
-            title={title}
             {...restImageProps}
-            data-aos="fade-right"
-            data-aos-easing="linear"
-            data-aos-duration="1000"
-            data-aos-offset="-300px"
+            alt={alt}
+            
           />
+          <div className="icon--expand">
+            {RenderMaximizeMinimizeIcon(lightboxIndex)}
+          </div>
         </div>
       ) : (
-        RenderYoutubeVideos(src)
+        <div style={{ width: "100%", height: "400px" }}>
+          {RenderYoutubeVideos(src)}
+        </div>
       );
     },
     []
@@ -56,37 +70,45 @@ const Gallery = ({ album, section }: props) => {
 
   return (
     <div
-      className={styles.gallery__container}
-      style={{ backgroundColor: section?.backgroundColor ? "#edf5f8" : "#000" }}
+      className={`${styles.gallery__container}`}
+      style={{
+        backgroundColor: section?.backgroundColor,
+        opacity: section?.opacity,
+      }}
+     
     >
       <Lightbox
-        open={ligthboxIndex >= 0}
-        index={ligthboxIndex}
-        close={() => setLigthboxIndex(-1)}
+        open={lightboxIndex >= 0}
+        index={lightboxIndex}
+        close={() => setLightboxIndex(-1)}
         slides={album}
         plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
         render={{ slide: NextJsImage }}
       />
 
-      <div className={styles.album__container}>
+      <div className={styles.album__container} {...section?.aosOpt} >
         {section && section.Headline && section.Headline}
         <div className={styles.album__content}>
           <PhotoAlbum
-            photos={album.map((photos: any) => ({
+            photos={album.map((photos: any, index) => ({
               src: photos.src,
               width: photos.width,
               height: photos.height,
-              title: photos.title,
+              title: photos.index,
+              onClick: () =>
+                setTimeout(() => {
+                  setLightboxIndex(index);
+                }, 500),
             }))}
             columns={(containerWidth) => {
               if (containerWidth < 400) return 2;
               if (containerWidth < 800) return 3;
-              return 4;
+              return section.columns;
             }}
             layout={section.layout}
             spacing={24}
             padding={0}
-            onClick={({ index }) => setLigthboxIndex(index)}
+            onClick={({ index }) => setLightboxIndex(index)}
             renderPhoto={RenderCustom}
           />
         </div>

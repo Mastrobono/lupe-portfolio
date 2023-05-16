@@ -7,12 +7,15 @@ function getPhotos(albumId: string) {
     photoIndex < photos[albumId as keyof typeof photos];
     photoIndex++
   ) {
-    newPhotos.push(
-      require(`../../public/assets/images/dynamic/${albumId}_${photoIndex}.jpeg`)
-        .default
-    );
-    newPhotos[photoIndex].title = albumId[0].toUpperCase() + albumId.slice(1);
-    newPhotos[photoIndex].isPhoto = true;
+    try {
+      newPhotos.push(
+        require(`../../public/assets/images/dynamic/${albumId}_${photoIndex}.jpeg`)
+          .default
+      );
+      newPhotos[photoIndex].title = albumId[0].toUpperCase() + albumId.slice(1);
+    } catch (err) {
+      console.log("err", err);
+    }
   }
   return newPhotos;
 }

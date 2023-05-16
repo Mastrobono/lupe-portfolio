@@ -1,22 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import UseAnimations from "react-useanimations";
-import maximizeMinimize from "react-useanimations/lib/maximizeMinimize";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import styles from "@/styles/gallery.module.scss";
-import { EffectCoverflow, Pagination, Autoplay } from "swiper";
+import { EffectCoverflow, Autoplay } from "swiper";
 import Image from "next/image";
-import getPhotos from "@/hooks/useGetPhotos";
 import Lightbox, { SlideImage } from "yet-another-react-lightbox";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import NextJsImage from "../../utilities/NextJsImage";
+import useGetPhotos from "@/hooks/useGetPhotos";
+import RenderMaximizeMinimizeIcon from "../MazimizeMinimizeIcon";
 
 //Swiper component, recives photos, lightBox State handler and MaximizeMinimize icon
 const SwiperGallery = ({
@@ -79,30 +78,17 @@ const SwiperGallery = ({
   );
 };
 
-const PolaroidGallery = ({ albumId }: { albumId: string }) => {
-  //Photos state
-  const [photos, setPhotos] = useState<SlideImage[]>([]);
+const PolaroidGallery = () => {
   //Lightbox State
   const [lightboxIndex, setLightboxIndex] = useState<number>(-1);
 
   //Get Photos
-  useEffect(() => setPhotos(getPhotos({ albumId: })), [albumId, lightboxIndex]);
+  const photos = useGetPhotos("polaroid")
 
   //Lightbox state handler
   const onOpenLightboxHandler = (lightboxIndex: number) =>
     setLightboxIndex(lightboxIndex);
 
-  //Render MaximizeMinmize Icon; recives the index of the current photo slide
-  const RenderMaximizeMinimizeIcon = () => (
-    <UseAnimations
-      className={styles.expandIcon}
-      animation={maximizeMinimize}
-      strokeColor="#fff"
-      fillColor="#fff"
-      size={48}
-      reverse={lightboxIndex !== -1}
-    />
-  );
 
   return (
     <div className={styles.container}>
@@ -124,7 +110,7 @@ const PolaroidGallery = ({ albumId }: { albumId: string }) => {
         <SwiperGallery
           photos={photos}
           onOpenLightboxHandler={onOpenLightboxHandler}
-          RenderMaximizeMinimizeIcon={RenderMaximizeMinimizeIcon}
+          RenderMaximizeMinimizeIcon={() => RenderMaximizeMinimizeIcon(lightboxIndex)}
         />
       </div>
     </div>

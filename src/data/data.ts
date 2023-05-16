@@ -4,8 +4,10 @@ export const photos = {
   miami: 2,
   miami_bg: 5,
   editorial: 12,
-  ketupe: 9,
-  gancia: 5
+  ketupe: 10,
+  gancia: 5,
+  fila: 9,
+  marcas: 20
 };
 export const videos = {
   mostaza: ["5yq2EAiys6E"],
@@ -53,7 +55,3 @@ export const videos = {
   ],
 };
 
-export const albumType = {
-  photos: Object.keys(photos),
-  videos: Object.keys(videos),
-};

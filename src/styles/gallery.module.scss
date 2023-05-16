@@ -24,68 +24,63 @@
     flex-direction: column;
   }
 
-  &__travels {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  &__cards {
     width: 100%;
-    flex-wrap: wrap;
+    &--travels {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-    .wrapper {
-      &__cards {
-        width: 60%;
+    &--fila {
+      .wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        &__cards {
+          width: 28%;
+          margin: 32px 0;
+          position: relative;
+          &__img {
+            width: 100%;
+            position: inherit;
+          }
+        }
+        &__video {
+          width: 100%;
+          height: 500px;
+        }
       }
-      &__img {
-        width: 35%;
+    }
+
+    &--gancia {
+      .wrapper {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
         position: relative;
-        .img {
-          position: absolute;
-          left: 0;
-          max-width: 100%;
-          opacity:1;
-          &:nth-child(2) {
-            animation-name: imageFadeAnimation;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
-            animation-duration: 2500ms;
-            animation-direction: alternate;
-          }
-        }
-
-        @keyframes imageFadeAnimation {
-          0% {
-            opacity: 1;
-          }
-          45% {
-            opacity: 1;
-          }
-          55% {
-            opacity: 0;
-          }
-          100% {
-            opacity: 0;
-          }
-        }
-      }
-      &__video {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        width: 100%;
-        .video__youtube {
-          padding: 32px 0px;
-          width: 33%;
-
-          iframe {
+        &__cards {
+          width: 28%;
+          margin: 32px 0;
+          position: relative;
+          &--full {
             width: 100%;
+            height: 600px;
+            position: relative;
+            &__img {
+              object-fit: cover;
+            }
           }
+        }
+
+        &__video {
+          width: 66%;
+          height: 600px;
         }
       }
     }
@@ -94,7 +89,8 @@
   .album__container {
     width: 100%;
     align-self: flex-start;
-    padding: 2.5% 10%;
+    padding: 2.5% 6%;
+   
   }
 
   .text__container {
@@ -109,6 +105,7 @@
     .section {
       &__title {
         color: #000;
+        z-index: 99;
 
         &::after {
           background-color: #d1334e;
