@@ -25,15 +25,15 @@ interface section {
   layout: "masonry" | "columns" | "rows";
 }
 
-const aosOpts = [
-  useGetAosOpt("fade-up"),
-  useGetAosOpt("fade-right"),
-  useGetAosOpt("fade-right"),
-];
-
 const KetupeGallery = ({ section }: { section: section }) => {
   const albumPhotos = useGetPhotos("ketupe");
   const albumHeaderPhotoSrc = albumPhotos[5].src;
+
+  const aosOpts = [
+    useGetAosOpt("fade-up"),
+    useGetAosOpt("fade-right"),
+    useGetAosOpt("fade-right"),
+  ];
 
   return (
     <div className={pageStyles.page__container}>

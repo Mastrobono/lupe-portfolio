@@ -47,7 +47,7 @@ const Gallery = ({ album, section }: props) => {
       },
     }) => {
       return isImage(src) ? (
-        <div className="album__photo" onClick={onClick}>
+        <div className="album__photo" onClick={onClick} {...section?.aosOpt}>
           <img
             style={{ ...style, width: "100%", padding: 0 }}
             src={src}
@@ -88,7 +88,7 @@ const Gallery = ({ album, section }: props) => {
         render={{ slide: NextJsImage }}
       />
 
-      <div className={styles.album__container} {...section?.aosOpt} >
+      <div className={styles.album__container} >
         {section && section.Headline && section.Headline}
         <div className={styles.album__content}>
           <PhotoAlbum
