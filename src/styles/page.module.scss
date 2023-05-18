@@ -3,6 +3,9 @@
   background-color: #000;
   margin-top: 0px;
   width: 100%;
+  @media (max-width: 768px) {
+    padding:0;
+  }
   &--full {
     padding: 32px;
   }

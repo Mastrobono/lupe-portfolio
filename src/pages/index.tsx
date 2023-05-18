@@ -35,10 +35,9 @@ export default function Home() {
 
   const albums = {
     editorial: useGetPhotos("editorial"),
-    fila: useGetVideos("fila").concat(useGetPhotos("fila")),
     gancia: useGetVideos("gancia").concat(useGetPhotos("gancia")),
     ketupe: useGetPhotos("ketupe"),
-    marcas: useGetPhotos("marcas"),
+    brandsProductions: useGetPhotos("marcas"),
     corrientes: useGetPhotos("corrientes"),
     brandsContent: useGetVideos("mostaza")
       .concat(useGetVideos("pantene"))
@@ -122,7 +121,7 @@ export default function Home() {
 
         <div className={`${styles.page__container__full}`}>
           <Gallery
-            album={albums.marcas}
+            album={albums.brandsProductions}
             section={{
               Headline: (
                 <HeadlineGallery
