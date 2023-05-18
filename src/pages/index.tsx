@@ -26,6 +26,7 @@ import FilaGallery from "@/components/galleries/FilaGallery";
 import GanciaGallery from "@/components/galleries/GanciaGallery";
 import KetupeGallery from "@/components/galleries/KetupeGallery";
 import useGetAosOpt from "@/hooks/useGetAosOpt";
+import TikTokProfile from "@/components/TikTokProfile";
 
 export default function Home() {
   useEffect(() => {
@@ -38,6 +39,7 @@ export default function Home() {
     gancia: useGetVideos("gancia").concat(useGetPhotos("gancia")),
     ketupe: useGetPhotos("ketupe"),
     marcas: useGetPhotos("marcas"),
+    corrientes: useGetPhotos("corrientes"),
     brandsContent: useGetVideos("mostaza")
       .concat(useGetVideos("pantene"))
       .concat(useGetVideos("quilmesRock"))
@@ -83,10 +85,7 @@ export default function Home() {
             }}
           />
         </div>
-
-        <div
-          className={`${styles.page__container} ${styles["page__container--full"]}`}
-        >
+        <div className={`${styles.page__container__full}`}>
           <TravelGallery
             section={{
               Headline: (
@@ -96,12 +95,32 @@ export default function Home() {
                   style={{ alignSelf: "end", color: "#000" }}
                 />
               ),
-              backgroundColor: "#edf5f8",
+              backgroundColor: "#e5ecf8",
               layout: "masonry",
             }}
           />
         </div>
         <div className={`${styles.page__container}`}>
+          <Gallery
+            album={albums.corrientes}
+            section={{
+              Headline: (
+                <HeadlineGallery
+                  title="Travels"
+                  subtitle="Corrientes"
+                  aosAnimation="fade-right"
+                  style={{ alignSelf: "start", color: "#000" }}
+                />
+              ),
+              backgroundColor: "#edf5f8",
+              layout: "masonry",
+              columns: 4,
+              aosOpt: { ...useGetAosOpt("fade-right") },
+            }}
+          />
+        </div>
+
+        <div className={`${styles.page__container__full}`}>
           <Gallery
             album={albums.marcas}
             section={{
@@ -109,17 +128,16 @@ export default function Home() {
                 <HeadlineGallery
                   title="Brands Productions"
                   aosAnimation={"fade-left"}
-                  style={{ alignSelf: "end", color: "#000" }}
+                  style={{ alignSelf: "end", color: "#fff" }}
                 />
               ),
-              backgroundColor: "#edf5f8",
+              backgroundColor: "#1a1b1b",
               layout: "masonry",
               columns: 4,
               aosOpt: { ...aosOpts[1] },
             }}
           />
         </div>
-
         <div
           className={`${styles.page__container} ${styles["page__container--full"]}`}
         >
@@ -162,7 +180,7 @@ export default function Home() {
                 <HeadlineGallery
                   title="Brands Content"
                   aosAnimation={"fade-right"}
-                  style={{ alignSelf: "end", color: "#000" }}
+                  style={{ alignSelf: "start", color: "#000" }}
                 />
               ),
               backgroundColor: "#edf5f8",
@@ -187,29 +205,8 @@ export default function Home() {
           }}
         />
 
-        {/*
-        <Gallery
-          album={albums.tiktok}
-          section={{
-            Headline: <HeadlineGallery title="TikTok" aosAnimation={"fade-left"}/>,
-            backgroundColor: "#edf5f8",
-            layout: "masonry",
-            columns: 4,
-            aosOpt:{...useGetAosOpt("fade-up")}
-          }}
-        />
-        */}
+        <TikTokProfile />
       </main>
     </>
   );
 }
-
-/*
-TODO:
-
-Tiktoks: 3 tipos
-Navbar: Secciones
-Scroll Up Arrow
-
-
-*/

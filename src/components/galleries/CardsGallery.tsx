@@ -57,6 +57,7 @@ const CardsGallery = ({ album, section }: Props) => {
               sizes="100vw"
               style={{ objectFit: section.imageFit }}
               onClick={() => setLightboxIndex(index)}
+              loading="lazy"
             />
           </SwiperSlide>
         );

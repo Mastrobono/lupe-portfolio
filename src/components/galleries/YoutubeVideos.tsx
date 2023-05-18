@@ -10,7 +10,7 @@ const RenderYoutubeVideos = (src: string) => {
     title: "test",
     
   };
-  return <YouTube videoId={src} style={{width:"100%", height:"100%"}} opts={opts} />;
+  return <YouTube videoId={src} style={{width:"100%", height:"100%"}} opts={opts} loading="lazy" />;
 };
 
 export default RenderYoutubeVideos;

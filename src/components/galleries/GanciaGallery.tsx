@@ -30,7 +30,7 @@ interface section {
 const GanciaGallery = ({ section }: { section: section }) => {
   const albumCards = useGetPhotos("gancia");
   const albumProfileCards = albumCards.splice(0, 3);
-  const albumVideo = useGetVideos("gancia");
+  const albumVideo = useGetVideos("gancia")[0].src;
 
   const aosOpts = [useGetAosOpt('fade-right'), useGetAosOpt('fade-right'), useGetAosOpt('fade-right')]
  
@@ -44,7 +44,7 @@ const GanciaGallery = ({ section }: { section: section }) => {
         }}
       >
         <div className={`${styles.album__container}`}>
-          <HeadlineGallery title="Gancia" subtitle="" aosAnimation="fade-left" style={{alignSelf: 'start', color:'#000'}}/>
+            {section.Headline}
 
           <div
             className={`${styles.gallery__container__cards} ${styles["gallery__container__cards--gancia"]}`}

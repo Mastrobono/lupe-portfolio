@@ -132,14 +132,15 @@ $blank__creme: #dfd6d6;
     overflow: hidden;
     width: 100%;
     margin-bottom: 24px;
-    .react-photo-album--photo {
+    .img {
       margin-bottom: 0 !important;
       display: block;
       width: 100%;
       z-index: 3;
+      position: inherit !important;
     }
     &:hover {
-      .react-photo-album--photo {
+      .img {
         -webkit-filter: brightness(70%);
         filter: brightness(70%);
         transition: transform 0.4s;

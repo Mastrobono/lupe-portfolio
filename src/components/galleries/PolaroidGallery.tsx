@@ -44,6 +44,7 @@ const SwiperGallery = ({
           width={200}
           height={200}
           alt="polaroid image"
+          loading="lazy"
         ></Image>
         <div className="polaroid__expand">
           <RenderMaximizeMinimizeIcon />

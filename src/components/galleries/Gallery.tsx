@@ -37,22 +37,20 @@ const Gallery = ({ album, section }: props) => {
     ({
       imageProps: {
         onClick,
-        width,
-        height,
         alt,
-        style,
         title,
         src,
-        ...restImageProps
+        sizes,
       },
     }) => {
       return isImage(src) ? (
         <div className="album__photo" onClick={onClick} {...section?.aosOpt}>
-          <img
-            style={{ ...style, width: "100%", padding: 0 }}
+          <Image
+            fill
             src={src}
-            {...restImageProps}
-            alt={alt}
+            {...{ alt, title, sizes, onClick }}
+            className="album__photo img"
+            loading="lazy"
           />
           <div className="icon--expand">
             {RenderMaximizeMinimizeIcon(lightboxIndex)}
@@ -114,6 +112,7 @@ const Gallery = ({ album, section }: props) => {
             onClick={({ index }) => setLightboxIndex(index)}
             //@ts-ignore
             renderPhoto={RenderCustom}
+            sizes={{ size: "100vw" }}
           />
         </div>
       </div>

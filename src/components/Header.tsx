@@ -54,6 +54,7 @@ const Header = () => {
             src={HeaderImage}
             fill
             alt="header image"
+            loading="lazy"
           />
         </div>
         <ArrowIcon />

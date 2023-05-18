@@ -27,7 +27,7 @@ export default function NextJsImage({ slide, rect } : {slide: any, rect: any}) {
         fill
         alt=""
         src={slide}
-        loading="eager"
+        loading="lazy"
         placeholder="blur"
         draggable={false}
         style={{ objectFit: cover ? "cover" : "contain" }}

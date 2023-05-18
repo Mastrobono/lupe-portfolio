@@ -33,73 +33,45 @@ const TravelGallery = ({ section }: { section: section }) => {
   const albumMiamiProfileCards = useGetPhotos("miami");
   const albumMiamiBgCards = useGetPhotos("miami_bg");
   const albumMiamiVideos = useGetVideos("miami");
-  const albumCorrientes = useGetPhotos("corrientes");
 
-  const aosOpts = [useGetAosOpt('fade-right'), useGetAosOpt('fade-left')]
-
+  const aosOpts = [useGetAosOpt("fade-right"), useGetAosOpt("fade-left")];
 
   return (
-    <div
-      className={styles.page__container}
-      style={{
-        backgroundColor: section?.backgroundColor,
-      }}
-    >
-      <div className={`${styles.gallery__container}`}>
-        <div className={`${styles.album__container}`}>
-          <HeadlineGallery
-            title="Travels"
-            subtitle="Miami Beach, US"
-            aosAnimation="fade-left"
-            style={{alignSelf: 'end', color:'#000'}}
-          />
+    <div className={`${styles.gallery__container}`} style={{backgroundColor: section.backgroundColor}}>
+      <div className={`${styles.album__container}`}>
+        <HeadlineGallery
+          title="Travels"
+          subtitle="Miami Beach, US"
+          aosAnimation="fade-left"
+          style={{ alignSelf: "end", color: "#000" }}
+        />
 
-          <div className={styles["gallery__container__cards--travels"]}>
-            <div className={styles["cards__content"]} {...aosOpts[0]}>
-              {
-                <CardsGallery
-                  album={albumMiamiBgCards}
-                  section={{ imageFit: "cover" }}
-                />
-              }
-            </div>
-            <div className={styles["cards__content"]} {...aosOpts[1]}>
-              {
-                <CardsGallery
-                  album={albumMiamiProfileCards}
-                  section={{ imageFit: "cover" }}
-                 
-                />
-              }
-            </div>
+        <div className={styles["gallery__container__cards--travels"]}>
+          <div className={styles["cards__content"]} {...aosOpts[0]}>
+            {
+              <CardsGallery
+                album={albumMiamiBgCards}
+                section={{ imageFit: "cover" }}
+              />
+            }
+          </div>
+          <div className={styles["cards__content"]} {...aosOpts[1]}>
+            {
+              <CardsGallery
+                album={albumMiamiProfileCards}
+                section={{ imageFit: "cover" }}
+              />
+            }
           </div>
         </div>
-        <Gallery
-          album={albumMiamiVideos}
-          section={{
-            backgroundColor: "#edf5f8",
-            layout: "masonry",
-            columns: 3,
-            aosOpt:{...useGetAosOpt("fade-up")}
-          }}
-          
-        />
       </div>
       <Gallery
-        album={albumCorrientes}
+        album={albumMiamiVideos}
         section={{
-          Headline: (
-            <HeadlineGallery
-              title="Travels"
-              subtitle="Corrientes"
-              aosAnimation="fade-right"
-              style={{alignSelf: 'start', color:'#000'}}
-            />
-          ),
-          backgroundColor: "#edf5f8",
+          backgroundColor: section.backgroundColor,
           layout: "masonry",
-          columns: 4,
-          aosOpt:{...useGetAosOpt("fade-right")}
+          columns: 3,
+          aosOpt: { ...useGetAosOpt("fade-up") },
         }}
       />
     </div>

@@ -13,11 +13,8 @@ import "swiper/css/effect-cube";
 import "swiper/css/pagination";
 // import required modules
 
-import CardsGallery from "./CardsGallery";
 import useGetPhotos from "@/hooks/useGetPhotos";
-import HeadlineGallery from "./HeadlineGallery";
-import RenderYoutubeVideos from "./YoutubeVideos";
-import NextJsImage from "@/utilities/NextJsImage";
+
 import useGetAosOpt from "@/hooks/useGetAosOpt";
 interface section {
   Headline?: JSX.Element;
@@ -57,6 +54,7 @@ const KetupeGallery = ({ section }: { section: section }) => {
                   alt="Main Image Ketupe"
                   className={styles.cards__content}
                   {...aosOpts[0]}
+                  loading="lazy"
                 />
               </div>
               <div className={styles["wrapper__cards--full"]}>
@@ -67,6 +65,7 @@ const KetupeGallery = ({ section }: { section: section }) => {
                     layout: "masonry",
                     columns: 3,
                     opacity: 0.8,
+                    aosOpt: { ...aosOpts[1] },
                   }}
                 />
               </div>
