@@ -9,9 +9,14 @@
 
 
 //Aos Fixes
-body {
+html, body{
+  display: block;
+  margin: 0px;
+  padding: 0px;
   overflow-x: hidden;
+  width: 100%;
 }
+
 
 .aos-init:not(.aos-animate):after {
   position: fixed;

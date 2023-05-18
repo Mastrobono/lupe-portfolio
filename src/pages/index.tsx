@@ -205,7 +205,6 @@ export default function Home() {
           }}
         />
 
-        <TikTokProfile />
       </main>
     </>
   );

@@ -59,7 +59,7 @@ const SwiperGallery = ({
       effect={"coverflow"}
       grabCursor={true}
       centeredSlides={true}
-      slidesPerView={isMobileScreen ? 2 : 3.5} //3.5 desktop, 1 mobile
+      slidesPerView={isMobileScreen ? 1 : 3.5} //3.5 desktop, 1 mobile
       autoplay={{
         delay: 2500,
         disableOnInteraction: false,

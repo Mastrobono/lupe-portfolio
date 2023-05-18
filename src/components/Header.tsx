@@ -8,8 +8,8 @@ import PolaroidGallery from "./galleries/PolaroidGallery";
 import React from "react";
 
 const socialMediaUrls = {
-  instagram: "https://www.instagram.com/lupecozzolino",
-  youtube: "https://www.youtube.com/lupecozzolino",
+  instagram: "https://www.instagram.com/lupeecozzolino/",
+  youtube: "https://www.youtube.com/@lupecozzolino",
   tiktok: "https://www.tiktok.com/lupecozzolino",
 };
 

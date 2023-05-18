@@ -33,11 +33,11 @@ const KetupeGallery = ({ section }: { section: section }) => {
   ];
 
   return (
-    <div className={pageStyles.page__container}>
+    <div className={pageStyles.page__container} style={{backgroundColor: '#1d1e1e'}}>
       <div
         className={`${styles.gallery__container}`}
         style={{
-          backgroundColor: "#edf5f81c",
+          backgroundColor: "#1d1e1e",
         }}
       >
         <div className={`${styles.album__container}`}>
