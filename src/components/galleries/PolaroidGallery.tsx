@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -85,12 +85,11 @@ const PolaroidGallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number>(-1);
 
   //Get Photos
-  const photos = useGetPhotos("polaroid")
+  const photos = useGetPhotos("polaroid");
 
   //Lightbox state handler
   const onOpenLightboxHandler = (lightboxIndex: number) =>
     setLightboxIndex(lightboxIndex);
-
 
   return (
     <div className={styles.container}>
@@ -112,7 +111,9 @@ const PolaroidGallery = () => {
         <SwiperGallery
           photos={photos}
           onOpenLightboxHandler={onOpenLightboxHandler}
-          RenderMaximizeMinimizeIcon={() => RenderMaximizeMinimizeIcon(lightboxIndex)}
+          RenderMaximizeMinimizeIcon={() =>
+            RenderMaximizeMinimizeIcon(lightboxIndex)
+          }
         />
       </div>
     </div>

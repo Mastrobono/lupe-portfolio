@@ -1,11 +1,8 @@
+import React from "react";
+
+//Import Styles
 import styles from "@/styles/gallery.module.scss";
 import pageStyles from "@/styles/page.module.scss";
-import Gallery from "./Gallery";
-
-import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -15,12 +12,14 @@ import "swiper/css/pagination";
 
 import useGetAosOpt from "@/hooks/useGetAosOpt";
 
-import CardsGallery from "./CardsGallery";
+//Import hooks
 import useGetPhotos from "@/hooks/useGetPhotos";
 import useGetVideos from "@/hooks/useGetVideos";
-import HeadlineGallery from "./HeadlineGallery";
+
+//Import components
+import CardsGallery from "./CardsGallery";
 import RenderYoutubeVideos from "./YoutubeVideos";
-import NextJsImage from "@/utilities/NextJsImage";
+
 interface section {
   Headline?: JSX.Element;
   backgroundColor: string;

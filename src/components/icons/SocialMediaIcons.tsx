@@ -6,8 +6,6 @@ import {
   faTiktok,
   faSnapchatGhost,
 } from "@fortawesome/free-brands-svg-icons";
-import { useState, useEffect } from "react";
-import { ObjectType } from "typescript";
 
 
 type socialMediaType = {

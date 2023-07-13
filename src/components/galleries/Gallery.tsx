@@ -1,26 +1,38 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import PhotoAlbum, { RenderPhoto } from "react-photo-album";
-import Lightbox, { SlideImage } from "yet-another-react-lightbox";
+import React, { useCallback, useState } from "react";
+
+//Import react-photo-album
+import PhotoAlbum, { RenderPhoto, Photo } from "react-photo-album";
+
+//Import lightbox stuff
+import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import styles from "@/styles/gallery.module.scss";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+
+//Import styles
+import styles from "@/styles/gallery.module.scss";
+
+//Import utilities
 import NextJsImage from "@/utilities/NextJsImage";
+import isImage from "@/utilities/isImage";
+
 import Image from "next/image";
 import "globals";
 
+//Import components
 import RenderYoutubeVideos from "./YoutubeVideos";
-import isImage from "@/utilities/isImage";
 import RenderMaximizeMinimizeIcon from "../MazimizeMinimizeIcon";
+import { SlideImage } from "yet-another-react-lightbox";
 interface props {
   album: album;
   section: section;
 }
 
-type album = Array<Array<string>>;
+type album = Array<SlideImage>;
+
 interface section {
   Headline?: JSX.Element;
   backgroundColor: string;
@@ -33,16 +45,8 @@ interface section {
 const Gallery = ({ album, section }: props) => {
   const [lightboxIndex, setLightboxIndex] = useState<number>(-1);
 
-  const RenderCustom: RenderPhoto = useCallback(
-    ({
-      imageProps: {
-        onClick,
-        alt,
-        title,
-        src,
-        sizes,
-      },
-    }) => {
+  const RenderCustom: RenderPhoto<Photo> = useCallback(
+    ({ imageProps: { onClick, alt, title, src, sizes } }) => {
       return isImage(src) ? (
         <div className="album__photo" onClick={onClick} {...section?.aosOpt}>
           <Image
@@ -69,6 +73,23 @@ const Gallery = ({ album, section }: props) => {
     []
   );
 
+  const albumParsed: Photo[] = album.map((photos: any, index: any) => ({
+    src: photos.src,
+    width: photos.width,
+    height: photos.height,
+    title: photos.index,
+    onClick: () =>
+      setTimeout(() => {
+        setLightboxIndex(index);
+      }, 500),
+  }));
+
+  const getResponsiveColumns = (containerWidth : number) => {
+    if (containerWidth < 600) return 2;
+    if (containerWidth < 700) return 3;
+    return section.columns;
+  };
+
   return (
     <div
       className={`${styles.gallery__container}`}
@@ -81,7 +102,6 @@ const Gallery = ({ album, section }: props) => {
         open={lightboxIndex >= 0}
         index={lightboxIndex}
         close={() => setLightboxIndex(-1)}
-        //@ts-ignore
         slides={album}
         plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
         render={{ slide: NextJsImage }}
@@ -91,26 +111,12 @@ const Gallery = ({ album, section }: props) => {
         {section && section.Headline && section.Headline}
         <div className={styles.album__content}>
           <PhotoAlbum
-            photos={album.map((photos: any, index) => ({
-              src: photos.src,
-              width: photos.width,
-              height: photos.height,
-              title: photos.index,
-              onClick: () =>
-                setTimeout(() => {
-                  setLightboxIndex(index);
-                }, 500),
-            }))}
-            columns={(containerWidth) => {
-              if (containerWidth < 600) return 2;
-              if (containerWidth < 700) return 3;
-              return section.columns;
-            }}
+            photos={albumParsed}
+            columns={(containerWidth) => getResponsiveColumns(containerWidth)}
             layout={section.layout}
             spacing={24}
             padding={0}
             onClick={({ index }) => setLightboxIndex(index)}
-            //@ts-ignore
             renderPhoto={RenderCustom}
             sizes={{ size: "100vw" }}
           />

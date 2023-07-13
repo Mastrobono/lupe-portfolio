@@ -1,28 +1,23 @@
+import React from "react";
+
+// Import Swiper
 import styles from "@/styles/gallery.module.scss";
 import Gallery from "./Gallery";
-
-import React, { useEffect, useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-cube";
 import "swiper/css/pagination";
-import img_0 from "../../../public/assets/images/dynamic/miami_0.jpeg";
-import img_1 from "../../../public/assets/images/dynamic/miami_1.jpeg";
-// import required modules
-import { EffectCube, Pagination } from "swiper";
-import Image from "next/image";
 
-import HeadlineGallery from "./HeadlineGallery";
-import CardsGallery from "./CardsGallery";
-import YouTube, { YouTubeProps } from "react-youtube";
+//Import hooks
 import useGetPhotos from "@/hooks/useGetPhotos";
 import useGetVideos from "@/hooks/useGetVideos";
-import NextJsImage from "@/utilities/NextJsImage";
-import generalStyles from "@/styles/index.module.scss";
 import useGetAosOpt from "@/hooks/useGetAosOpt";
+
+//Import custom components
+import HeadlineGallery from "./HeadlineGallery";
+import CardsGallery from "./CardsGallery";
+
 interface section {
   Headline?: JSX.Element;
   backgroundColor: string;

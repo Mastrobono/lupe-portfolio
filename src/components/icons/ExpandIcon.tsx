@@ -2,9 +2,7 @@ import styles from "@/styles/expandIcon.module.scss";
 
 const ExpandIcon = () => {
   return (
-    <div
-      className={styles.container}
-    >
+    <div className={styles.container}>
       <svg fill="#fff" height="25px" width="25px" viewBox="0 0 242.133 242.133">
         <path
           id="XMLID_15_"

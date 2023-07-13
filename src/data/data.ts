@@ -1,4 +1,4 @@
-export const photos = {
+export const photosQuantity = {
   polaroid: 4,
   corrientes: 12,
   miami: 2,
@@ -9,7 +9,7 @@ export const photos = {
   fila: 9,
   marcas: 20
 };
-export const videos = {
+export const videosUrl = {
   mostaza: ["5yq2EAiys6E"],
   quilmesRock: ["YQERuBqKHJA"],
   contenidoMarcas: ["INrcISQVCRA"],

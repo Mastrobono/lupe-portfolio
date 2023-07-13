@@ -10,7 +10,7 @@ import React from "react";
 const socialMediaUrls = {
   instagram: "https://www.instagram.com/lupeecozzolino/",
   youtube: "https://www.youtube.com/@lupecozzolino",
-  tiktok: "https://www.tiktok.com/lupecozzolino",
+  tiktok: "https://www.tiktok.com/@lupecozzolino",
 };
 
 const Header = () => {

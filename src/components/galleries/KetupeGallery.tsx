@@ -1,21 +1,23 @@
+import React from "react";
+
+//Import styles
 import styles from "@/styles/gallery.module.scss";
 import pageStyles from "@/styles/page.module.scss";
-import Gallery from "./Gallery";
 
-import React, { useEffect, useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+//Import components
+import Gallery from "./Gallery";
 import Image from "next/image";
+
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-cube";
 import "swiper/css/pagination";
-// import required modules
 
+//Import hooks
 import useGetPhotos from "@/hooks/useGetPhotos";
-
 import useGetAosOpt from "@/hooks/useGetAosOpt";
+
 interface section {
   Headline?: JSX.Element;
   backgroundColor: string;

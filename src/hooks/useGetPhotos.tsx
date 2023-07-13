@@ -1,10 +1,10 @@
-import { photos } from "@/data/data";
+import { photosQuantity } from "@/data/data";
 
 function getPhotos(albumId: string) {
   const newPhotos = [];
   for (
     let photoIndex = 0;
-    photoIndex < photos[albumId as keyof typeof photos];
+    photoIndex < photosQuantity[albumId as keyof typeof photosQuantity];
     photoIndex++
   ) {
     try {
