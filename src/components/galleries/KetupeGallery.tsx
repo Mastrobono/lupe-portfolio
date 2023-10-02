@@ -5,7 +5,7 @@ import styles from "@/styles/gallery.module.scss";
 import pageStyles from "@/styles/page.module.scss";
 
 //Import components
-import Gallery from "./Gallery";
+import Gallery from "../Gallery";
 import Image from "next/image";
 
 
@@ -35,7 +35,7 @@ const KetupeGallery = ({ section }: { section: section }) => {
   ];
 
   return (
-    <div className={pageStyles.page__container} style={{backgroundColor: '#1d1e1e'}}>
+    <div className={pageStyles.page__container} style={{ backgroundColor: '#1d1e1e' }}>
       <div
         className={`${styles.gallery__container}`}
         style={{

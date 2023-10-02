@@ -2,17 +2,15 @@ import { videosUrl } from "@/data/data";
 
 type videosPerAlbumLinks = keyof typeof videosUrl;
 
-function getVideos(albumId: string) {
+function useGetVideos(albumId: string) {
   const videosId = [
     albumId as videosPerAlbumLinks,
   ] as Array<videosPerAlbumLinks>;
   //@ts-ignore
   return videosUrl[videosId].map((video) => {
     return {
-      src: video,
-      width: "300",
-      height: "300",
+      src: video
     };
   });
 }
-export default getVideos;
+export default useGetVideos;

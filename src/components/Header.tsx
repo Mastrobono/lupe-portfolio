@@ -4,7 +4,7 @@ import styles from "@/styles/header.module.scss";
 import HeaderImage from "../../public/assets/images/dynamic/header.jpeg";
 import ArrowIcon from "./icons/ArrowIcon";
 import SocialMediaIcons from "./icons/SocialMediaIcons";
-import PolaroidGallery from "./galleries/PolaroidGallery";
+import SwiperPolaroidGallery from "./SwiperPolaroidGallery";
 import React from "react";
 
 const socialMediaUrls = {
@@ -45,7 +45,7 @@ const Header = () => {
               Campaigns - Editorial - Travels - Brands - Ketupe - TikToks
             </p>
             <SocialMediaIcons socialMediaLinks={socialMediaUrls} />
-            <PolaroidGallery /> 
+            <SwiperPolaroidGallery />
           </div>
         </div>
         <div className={styles.container__image}>

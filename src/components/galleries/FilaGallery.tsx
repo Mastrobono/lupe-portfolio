@@ -1,13 +1,6 @@
 import styles from "@/styles/gallery.module.scss";
-import pageStyles from "@/styles/page.module.scss";
-import Gallery from "./Gallery";
 
-import React, { useEffect, useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-//import data
-import { videos } from "@/data/data";
+import React from "react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -15,27 +8,26 @@ import "swiper/css/effect-cube";
 import "swiper/css/pagination";
 // import required modules
 
-import CardsGallery from "./CardsGallery";
+import SwiperCardsGallery from "../SwiperCardsGallery";
 import useGetPhotos from "@/hooks/useGetPhotos";
 import useGetVideos from "@/hooks/useGetVideos";
-import HeadlineGallery from "./HeadlineGallery";
-import RenderYoutubeVideos from "./YoutubeVideos";
-interface section {
-  Headline?: JSX.Element;
-  backgroundColor: string;
-  layout: "masonry" | "columns" | "rows";
-}
+import HeadlineGallery from "../HeadlineGallery";
+import RenderYoutubeVideos from "../RenderYoutubeVideos";
 
 import useGetAosOpt from "@/hooks/useGetAosOpt";
+import { sectionAttributes } from "@/types";
 
+const FilaGallery = ({ section }: { section: sectionAttributes }) => {
 
-const FilaGallery = ({ section }: { section: section }) => {
+  //Get photos ordered as i want in 3 rows
   const albumFilaCards = [
     useGetPhotos("fila").slice(6, 9),
     useGetPhotos("fila").slice(3, 6),
     useGetPhotos("fila").slice(0, 3),
   ];
-  const albumFilaVideo = useGetVideos("fila")[0].src;
+
+  //Select
+  const albumFilaVideo = useGetVideos("fila")[0];
 
   const aosOpts = [useGetAosOpt('fade-down'), useGetAosOpt('fade-up')]
 
@@ -47,7 +39,7 @@ const FilaGallery = ({ section }: { section: section }) => {
       }}
     >
       <div className={`${styles.album__container}`}>
-        <HeadlineGallery title="Fila" subtitle="" aosAnimation={"fade-left"} style={{alignSelf: 'start', color:'#000'}} />
+        <HeadlineGallery title="Fila" subtitle="" aosOpt={useGetAosOpt('fade-left')} style={{ alignSelf: 'start', color: '#000' }} />
 
         <div
           className={`${styles.gallery__container__cards} ${styles["gallery__container__cards--fila"]}`}
@@ -55,7 +47,7 @@ const FilaGallery = ({ section }: { section: section }) => {
           <div className={styles.wrapper}>
             {albumFilaCards.map((album, index) => (
               <div key={`filaCard-${index}`} className={`${styles.wrapper__cards}`} {...aosOpts[0]}>
-                <CardsGallery album={album} section={{ imageFit: "cover" }} />
+                <SwiperCardsGallery album={album} section={{ imageFit: "cover" }} />
               </div>
             ))}
             <div

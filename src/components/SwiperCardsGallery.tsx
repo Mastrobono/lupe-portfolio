@@ -52,7 +52,7 @@ const CardsGallery = ({ album, section }: Props) => {
             <Image
               src={photo.src}
               className={styles.img}
-              alt={"card photographie"}
+              alt={"card photography"}
               fill
               sizes="100vw"
               style={{ objectFit: section.imageFit }}

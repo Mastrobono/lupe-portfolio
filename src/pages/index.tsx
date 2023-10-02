@@ -16,38 +16,23 @@ import { useEffect } from "react";
 // Import components
 import Head from "next/head";
 import Header from "@/components/Header";
-import HeadlineGallery from "@/components/galleries/HeadlineGallery";
-import Gallery from "@/components/galleries/Gallery";
+import HeadlineGallery from "@/components/HeadlineGallery";
+import Gallery from "@/components/Gallery";
 import TravelGallery from "@/components/galleries/TravelGallery";
-import useGetPhotos from "@/hooks/useGetPhotos";
-import useGetVideos from "@/hooks/useGetVideos";
 import { get } from "http";
 import FilaGallery from "@/components/galleries/FilaGallery";
 import GanciaGallery from "@/components/galleries/GanciaGallery";
 import KetupeGallery from "@/components/galleries/KetupeGallery";
 import useGetAosOpt from "@/hooks/useGetAosOpt";
-import TikTokProfile from "@/components/TikTokProfile";
+import useGetAlbums from "@/hooks/useGetAlbums";
+import siteSettings from "@/data/siteSettings.json"
 
 export default function Home() {
   useEffect(() => {
     setTimeout(() => AOS.init(), 2800);
   }, []);
 
-  const albums = {
-    editorial: useGetPhotos("editorial"),
-    gancia: useGetVideos("gancia").concat(useGetPhotos("gancia")),
-    ketupe: useGetPhotos("ketupe"),
-    brandsProductions: useGetPhotos("marcas"),
-    corrientes: useGetPhotos("corrientes"),
-    brandsContent: useGetVideos("mostaza")
-      .concat(useGetVideos("pantene"))
-      .concat(useGetVideos("quilmesRock"))
-      .concat(useGetVideos("sedalLollapalooza"))
-      .concat(useGetVideos("contenidoMarcas")),
-    tiktok: useGetVideos("tiktokActuacion")
-      .concat(useGetVideos("tiktokBaile"))
-      .concat(useGetVideos("tiktokLifestyle")),
-  };
+  const albums = useGetAlbums();
 
   const aosOpts = [
     useGetAosOpt("fade-left"),
@@ -56,11 +41,13 @@ export default function Home() {
     useGetAosOpt("fade-left"),
   ];
 
+  console.log('albums editorial', albums.editorial)
+
   return (
     <>
       <Head>
-        <title>Lupe Cozzolino</title>
-        <meta name="description" content="Lupe Cozzolino Portfolio" />
+        <title>{siteSettings.artist}</title>
+        <meta name="description" content="Portfolio" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -73,14 +60,14 @@ export default function Home() {
               Headline: (
                 <HeadlineGallery
                   title="Editorial Productions"
-                  aosAnimation={"fade-right"}
+                  aosOpt={useGetAosOpt("fade-right")}
                   style={{ alignSelf: "end", color: "#000" }}
                 />
               ),
               backgroundColor: "#edf5f8",
               layout: "masonry",
               columns: 4,
-              aosOpt: { ...aosOpts[0] },
+              aosOpt: useGetAosOpt("fade-left"),
             }}
           />
         </div>
@@ -90,7 +77,7 @@ export default function Home() {
               Headline: (
                 <HeadlineGallery
                   title="Editorial Productions"
-                  aosAnimation={"fade-left"}
+                  aosOpt={useGetAosOpt("fade-left")}
                   style={{ alignSelf: "end", color: "#000" }}
                 />
               ),
@@ -107,14 +94,14 @@ export default function Home() {
                 <HeadlineGallery
                   title="Travels"
                   subtitle="Corrientes"
-                  aosAnimation="fade-right"
+                  aosOpt={useGetAosOpt("fade-right")}
                   style={{ alignSelf: "start", color: "#000" }}
                 />
               ),
               backgroundColor: "#edf5f8",
               layout: "masonry",
               columns: 4,
-              aosOpt: { ...useGetAosOpt("fade-right") },
+              aosOpt: useGetAosOpt("fade-right"),
             }}
           />
         </div>
@@ -126,7 +113,7 @@ export default function Home() {
               Headline: (
                 <HeadlineGallery
                   title="Brands Productions"
-                  aosAnimation={"fade-left"}
+                  aosOpt={useGetAosOpt("fade-left")}
                   style={{ alignSelf: "end", color: "#fff" }}
                 />
               ),
@@ -145,7 +132,7 @@ export default function Home() {
               Headline: (
                 <HeadlineGallery
                   title="Fila"
-                  aosAnimation={"fade-left"}
+                  aosOpt={useGetAosOpt("fade-left")}
                   style={{ alignSelf: "start", color: "#000" }}
                 />
               ),
@@ -160,7 +147,7 @@ export default function Home() {
             Headline: (
               <HeadlineGallery
                 title="Gancia"
-                aosAnimation={"fade-left"}
+                aosOpt={useGetAosOpt("fade-left")}
                 style={{ alignSelf: "end", color: "#000" }}
               />
             ),
@@ -178,7 +165,7 @@ export default function Home() {
               Headline: (
                 <HeadlineGallery
                   title="Brands Content"
-                  aosAnimation={"fade-right"}
+                  aosOpt={useGetAosOpt("fade-left")}
                   style={{ alignSelf: "start", color: "#000" }}
                 />
               ),
@@ -195,7 +182,7 @@ export default function Home() {
             Headline: (
               <HeadlineGallery
                 title="Ketupe"
-                aosAnimation={"fade-down"}
+                aosOpt={useGetAosOpt("fade-down")}
                 style={{ alignSelf: "center", color: "#fff" }}
               />
             ),

@@ -1,6 +1,6 @@
 import { photosQuantity } from "@/data/data";
 
-function getPhotos(albumId: string) {
+function useGetPhotos(albumId: string) {
   const newPhotos = [];
   for (
     let photoIndex = 0;
@@ -20,4 +20,4 @@ function getPhotos(albumId: string) {
   return newPhotos;
 }
 
-export default getPhotos;
+export default useGetPhotos;

@@ -17,8 +17,8 @@ import useGetPhotos from "@/hooks/useGetPhotos";
 import useGetVideos from "@/hooks/useGetVideos";
 
 //Import components
-import CardsGallery from "./CardsGallery";
-import RenderYoutubeVideos from "./YoutubeVideos";
+import SwiperCardsGallery from "../SwiperCardsGallery";
+import RenderYoutubeVideos from "../RenderYoutubeVideos";
 
 interface section {
   Headline?: JSX.Element;
@@ -29,10 +29,10 @@ interface section {
 const GanciaGallery = ({ section }: { section: section }) => {
   const albumCards = useGetPhotos("gancia");
   const albumProfileCards = albumCards.splice(0, 3);
-  const albumVideo = useGetVideos("gancia")[0].src;
+  const albumVideo = useGetVideos("gancia")[0];
 
   const aosOpts = [useGetAosOpt('fade-right'), useGetAosOpt('fade-right'), useGetAosOpt('fade-right')]
- 
+
 
   return (
     <div className={pageStyles.page__container}>
@@ -43,14 +43,14 @@ const GanciaGallery = ({ section }: { section: section }) => {
         }}
       >
         <div className={`${styles.album__container}`}>
-            {section.Headline}
+          {section.Headline}
 
           <div
             className={`${styles.gallery__container__cards} ${styles["gallery__container__cards--gancia"]}`}
           >
             <div className={styles.wrapper}>
               <div className={`${styles.wrapper__cards}`} {...aosOpts[0]}>
-                <CardsGallery
+                <SwiperCardsGallery
                   album={albumProfileCards}
                   section={{ imageFit: "cover" }}
                 />
@@ -59,7 +59,7 @@ const GanciaGallery = ({ section }: { section: section }) => {
                 {RenderYoutubeVideos(albumVideo)}
               </div>
               <div className={styles["wrapper__cards--full"]} {...aosOpts[2]}>
-                <CardsGallery
+                <SwiperCardsGallery
                   album={albumCards}
                   section={{ imageFit: "cover" }}
                 />

@@ -13,9 +13,9 @@ import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import NextJsImage from "../../utilities/NextJsImage";
+import NextJsImage from "../utilities/NextJsImage";
 import useGetPhotos from "@/hooks/useGetPhotos";
-import RenderMaximizeMinimizeIcon from "../MazimizeMinimizeIcon";
+import RenderMaximizeMinimizeIcon from "./icons/MazimizeMinimizeIcon";
 import useCheckMobileScreen from "@/hooks/useCheckMobileScreen";
 //Swiper component, recives photos, lightBox State handler and MaximizeMinimize icon
 const SwiperGallery = ({

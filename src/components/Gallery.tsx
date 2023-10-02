@@ -23,23 +23,16 @@ import Image from "next/image";
 import "globals";
 
 //Import components
-import RenderYoutubeVideos from "./YoutubeVideos";
-import RenderMaximizeMinimizeIcon from "../MazimizeMinimizeIcon";
+import RenderYoutubeVideos from "./RenderYoutubeVideos";
+import RenderMaximizeMinimizeIcon from "./icons/MazimizeMinimizeIcon";
 import { SlideImage } from "yet-another-react-lightbox";
-interface props {
-  album: album;
-  section: section;
-}
+import { sectionAttributes } from "@/types";
 
 type album = Array<SlideImage>;
 
-interface section {
-  Headline?: JSX.Element;
-  backgroundColor: string;
-  layout: "masonry" | "columns" | "rows";
-  columns: number;
-  opacity?: number;
-  aosOpt?: any;
+interface props {
+  album: album;
+  section: sectionAttributes;
 }
 
 const Gallery = ({ album, section }: props) => {
@@ -63,20 +56,20 @@ const Gallery = ({ album, section }: props) => {
       ) : (
         <div
           className="album__photo"
-          {...section?.aosOpt}
           style={{ width: "100%", height: "400px" }}
+          {...section?.aosOpt}
         >
           {RenderYoutubeVideos(src)}
         </div>
       );
     },
-    []
+    [lightboxIndex, section?.aosOpt]
   );
 
   const albumParsed: Photo[] = album.map((photos: any, index: any) => ({
     src: photos.src,
-    width: photos.width,
-    height: photos.height,
+    width: photos.width || 300,
+    height: photos.height || 300,
     title: photos.index,
     onClick: () =>
       setTimeout(() => {
@@ -84,10 +77,12 @@ const Gallery = ({ album, section }: props) => {
       }, 500),
   }));
 
-  const getResponsiveColumns = (containerWidth : number) => {
+  console.log('album photos', albumParsed)
+
+  const getResponsiveColumns = (containerWidth: number) => {
     if (containerWidth < 600) return 2;
     if (containerWidth < 700) return 3;
-    return section.columns;
+    return section.columns || 4;
   };
 
   return (
@@ -113,7 +108,7 @@ const Gallery = ({ album, section }: props) => {
           <PhotoAlbum
             photos={albumParsed}
             columns={(containerWidth) => getResponsiveColumns(containerWidth)}
-            layout={section.layout}
+            layout={section.layout || "masonry"}
             spacing={24}
             padding={0}
             onClick={({ index }) => setLightboxIndex(index)}

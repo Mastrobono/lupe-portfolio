@@ -1,5 +1,7 @@
-function useGetAosOpt(aosAnimation: string) {
-  const aosOpt = {
+import { AOSAnimations, AOSAttributes } from "@/types";
+
+function useGetAosOpt(aosAnimation: AOSAnimations) {
+  const aosOpt: AOSAttributes = {
     "data-aos": aosAnimation,
     "data-aos-easing": "linear",
     "data-aos-duration": "1000",

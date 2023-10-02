@@ -2,7 +2,7 @@ import React from "react";
 
 // Import Swiper
 import styles from "@/styles/gallery.module.scss";
-import Gallery from "./Gallery";
+import Gallery from "../Gallery";
 
 // Import Swiper styles
 import "swiper/css";
@@ -15,8 +15,8 @@ import useGetVideos from "@/hooks/useGetVideos";
 import useGetAosOpt from "@/hooks/useGetAosOpt";
 
 //Import custom components
-import HeadlineGallery from "./HeadlineGallery";
-import CardsGallery from "./CardsGallery";
+import HeadlineGallery from "../HeadlineGallery";
+import SwiperCardsGallery from "../SwiperCardsGallery";
 
 interface section {
   Headline?: JSX.Element;
@@ -29,22 +29,24 @@ const TravelGallery = ({ section }: { section: section }) => {
   const albumMiamiBgCards = useGetPhotos("miami_bg");
   const albumMiamiVideos = useGetVideos("miami");
 
+  console.log('album videos', albumMiamiVideos)
+
   const aosOpts = [useGetAosOpt("fade-right"), useGetAosOpt("fade-left")];
 
   return (
-    <div className={`${styles.gallery__container}`} style={{backgroundColor: section.backgroundColor}}>
+    <div className={`${styles.gallery__container}`} style={{ backgroundColor: section.backgroundColor }}>
       <div className={`${styles.album__container}`}>
         <HeadlineGallery
           title="Travels"
           subtitle="Miami Beach, US"
-          aosAnimation="fade-left"
+          aosOpt={useGetAosOpt("fade-right")}
           style={{ alignSelf: "end", color: "#000" }}
         />
 
         <div className={styles["gallery__container__cards--travels"]}>
           <div className={styles["cards__content"]} {...aosOpts[0]}>
             {
-              <CardsGallery
+              <SwiperCardsGallery
                 album={albumMiamiBgCards}
                 section={{ imageFit: "cover" }}
               />
@@ -52,7 +54,7 @@ const TravelGallery = ({ section }: { section: section }) => {
           </div>
           <div className={styles["cards__content"]} {...aosOpts[1]}>
             {
-              <CardsGallery
+              <SwiperCardsGallery
                 album={albumMiamiProfileCards}
                 section={{ imageFit: "cover" }}
               />

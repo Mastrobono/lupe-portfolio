@@ -1,23 +1,18 @@
 import React, { CSSProperties } from "react";
 import styles from "@/styles/gallery.module.scss";
+import { AOSAttributes } from "@/types";
 
 const HeadlineGallery = ({
   title,
   subtitle,
-  aosAnimation,
+  aosOpt,
   style,
 }: {
   title?: string;
   subtitle?: string;
-  aosAnimation: string;
+  aosOpt: AOSAttributes;
   style: CSSProperties;
 }) => {
-  const aosOpt = {
-    "data-aos": aosAnimation,
-    "data-aos-easing": "linear",
-    "data-aos-duration": "1000",
-    "data-aos-offset": "-300px",
-  };
   return (
     <div className={styles.text__container} {...aosOpt}>
       <h1 className={styles.section__title} style={style}>
