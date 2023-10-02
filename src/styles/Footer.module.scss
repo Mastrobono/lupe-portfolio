@@ -1,0 +1,17 @@
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    background-color: #1d1e1e;
+    padding: 0 calc(32px + 6%);
+
+
+    .title {
+        color: #d1334e;
+        font-weight: bold;
+        font-size: 22px;
+        font-family: "Roboto Slab", sans-serif;
+    }
+}

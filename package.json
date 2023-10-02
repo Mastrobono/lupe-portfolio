@@ -34,5 +34,8 @@
     "swiper": "^9.2.0",
     "typescript": "5.0.3",
     "yet-another-react-lightbox": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.8.0"
   }
 }

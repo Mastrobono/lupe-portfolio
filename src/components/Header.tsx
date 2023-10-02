@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import styles from "@/styles/header.module.scss";
+import styles from "@/styles/Header.module.scss";
 import HeaderImage from "../../public/assets/images/dynamic/header.jpeg";
 import ArrowIcon from "./icons/ArrowIcon";
 import SocialMediaIcons from "./icons/SocialMediaIcons";

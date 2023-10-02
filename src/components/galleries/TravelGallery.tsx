@@ -29,19 +29,12 @@ const TravelGallery = ({ section }: { section: section }) => {
   const albumMiamiBgCards = useGetPhotos("miami_bg");
   const albumMiamiVideos = useGetVideos("miami");
 
-  console.log('album videos', albumMiamiVideos)
-
   const aosOpts = [useGetAosOpt("fade-right"), useGetAosOpt("fade-left")];
 
   return (
     <div className={`${styles.gallery__container}`} style={{ backgroundColor: section.backgroundColor }}>
       <div className={`${styles.album__container}`}>
-        <HeadlineGallery
-          title="Travels"
-          subtitle="Miami Beach, US"
-          aosOpt={useGetAosOpt("fade-right")}
-          style={{ alignSelf: "end", color: "#000" }}
-        />
+        {section.Headline && section.Headline}
 
         <div className={styles["gallery__container__cards--travels"]}>
           <div className={styles["cards__content"]} {...aosOpts[0]}>

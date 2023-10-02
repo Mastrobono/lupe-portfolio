@@ -19,13 +19,15 @@ import Header from "@/components/Header";
 import HeadlineGallery from "@/components/HeadlineGallery";
 import Gallery from "@/components/Gallery";
 import TravelGallery from "@/components/galleries/TravelGallery";
-import { get } from "http";
 import FilaGallery from "@/components/galleries/FilaGallery";
 import GanciaGallery from "@/components/galleries/GanciaGallery";
 import KetupeGallery from "@/components/galleries/KetupeGallery";
 import useGetAosOpt from "@/hooks/useGetAosOpt";
 import useGetAlbums from "@/hooks/useGetAlbums";
 import siteSettings from "@/data/siteSettings.json"
+import Navbar from "@/components/Navbar/Navbar"
+import Footer from "@/components/Footer/Footer";
+import ScrollUpButton from "@/components/ScrollUp/ScrollUp";
 
 export default function Home() {
   useEffect(() => {
@@ -52,6 +54,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.app__container}>
+        <Navbar />
         <Header></Header>
         <div className={`${styles.page__container}`}>
           <Gallery
@@ -76,9 +79,10 @@ export default function Home() {
             section={{
               Headline: (
                 <HeadlineGallery
-                  title="Editorial Productions"
+                  title="Travels"
+                  subtitle="Miami Beach, US"
                   aosOpt={useGetAosOpt("fade-left")}
-                  style={{ alignSelf: "end", color: "#000" }}
+                  style={{ alignSelf: "start", color: "#000" }}
                 />
               ),
               backgroundColor: "#e5ecf8",
@@ -94,8 +98,8 @@ export default function Home() {
                 <HeadlineGallery
                   title="Travels"
                   subtitle="Corrientes"
-                  aosOpt={useGetAosOpt("fade-right")}
-                  style={{ alignSelf: "start", color: "#000" }}
+                  aosOpt={useGetAosOpt("fade-left")}
+                  style={{ alignSelf: "end", color: "#000" }}
                 />
               ),
               backgroundColor: "#edf5f8",
@@ -190,7 +194,8 @@ export default function Home() {
             layout: "masonry",
           }}
         />
-
+        <Footer />
+        <ScrollUpButton />
       </main>
     </>
   );

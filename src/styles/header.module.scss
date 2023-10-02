@@ -4,6 +4,7 @@ $screenHeight: calc(100vh - 96px);
 .page__container {
   padding: 32px;
   background-color: #000;
+  padding-top: 0;
 
   .container {
     width: 100%;
@@ -26,7 +27,7 @@ $screenHeight: calc(100vh - 96px);
       width: 56%;
 
       @media only screen and (max-width: 768px) {
-        padding:10%;
+        padding: 10%;
         width: 75%;
       }
 
@@ -87,20 +88,16 @@ $screenHeight: calc(100vh - 96px);
       height: 100%;
       z-index: 2;
       opacity: 1;
-      background-image: linear-gradient(
-        65deg,
-        #000 0%,
-        #000 50%,
-        transparent 65%
-      );
+      background-image: linear-gradient(65deg,
+          #000 0%,
+          #000 50%,
+          transparent 65%);
 
       @media only screen and (max-width: 768px) {
-        background-image: linear-gradient(
-          65deg,
-          #000 0%,
-          #000 55%,
-          transparent 65%
-        );
+        background-image: linear-gradient(65deg,
+            #000 0%,
+            #000 55%,
+            transparent 65%);
       }
     }
   }
@@ -135,6 +132,7 @@ $screenHeight: calc(100vh - 96px);
 }
 
 @media only screen and (max-width: 768px) {
+
   .container,
   .content {
     height: $screenHeight;
