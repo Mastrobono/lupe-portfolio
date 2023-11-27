@@ -12,7 +12,6 @@ const Navbar: React.FC = () => {
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 50) {
-                console.log('scroleaste')
                 setIsNavbarFixed(true);
             } else {
                 setIsNavbarFixed(false);

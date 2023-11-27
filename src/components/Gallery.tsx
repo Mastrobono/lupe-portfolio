@@ -77,7 +77,6 @@ const Gallery = ({ album, section }: props) => {
       }, 500),
   }));
 
-  console.log('album photos', albumParsed)
 
   const getResponsiveColumns = (containerWidth: number) => {
     if (containerWidth < 600) return 2;

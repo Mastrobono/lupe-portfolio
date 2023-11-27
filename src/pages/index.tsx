@@ -43,8 +43,6 @@ export default function Home() {
     useGetAosOpt("fade-left"),
   ];
 
-  console.log('albums editorial', albums.editorial)
-
   return (
     <>
       <Head>
